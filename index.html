@@ -105,18 +105,21 @@
 }
 .bs-top.is-set::before{ opacity:0 }
 .bs-top > *{ position:relative }
-.bs-mark{display:flex;align-items:center;gap:.6rem;text-decoration:none;flex:0 0 auto}
+.bs-mark{display:flex;align-items:center;gap:.6rem;text-decoration:none;flex:0 0 auto;min-height:44px;touch-action:manipulation}
 .bs-mark svg{width:26px;height:26px;flex:0 0 auto}
 .bs-mark b{font-family:var(--sc-font-display);font-size:.95rem;font-weight:600;letter-spacing:var(--sc-track-snug);white-space:nowrap}
 .bs-nav{display:flex;gap:var(--sc-5);margin-left:auto}
 .bs-theme{
-  width:34px;height:34px;flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;
+  /* 44px, not 34: this is a primary control and a thumb is ~45px across.
+     A 34px box is a mis-tap waiting to happen on a phone. */
+  width:44px;height:44px;flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;
   border:1px solid var(--sc-hairline);border-radius:var(--sc-r-sm);background:transparent;
-  color:var(--sc-ink-soft);cursor:pointer;padding:0;
+  color:var(--sc-ink-soft);cursor:pointer;padding:0;touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
   transition:color 140ms var(--sc-ease-out),border-color 140ms var(--sc-ease-out);
 }
 .bs-theme:hover{color:var(--sc-ink);border-color:var(--sc-accent-text)}
-.bs-theme svg{width:17px;height:17px;display:block}
+.bs-theme svg{width:19px;height:19px;display:block}
 .bs-theme .i-moon{display:none}
 :root[data-theme="dark"] .bs-theme .i-sun{display:none}
 :root[data-theme="dark"] .bs-theme .i-moon{display:block}
@@ -195,6 +198,7 @@
   left:var(--sc-gutter); bottom:calc(env(safe-area-inset-bottom,0px) + 4.75rem);
   display:none; align-items:center; gap:.55rem;
   padding:.55rem .85rem; border-radius:var(--sc-r-pill);
+  min-height:44px; touch-action:manipulation; -webkit-tap-highlight-color:transparent;
   background:color-mix(in oklab,var(--sc-surface) 92%,transparent);
   border:1px solid var(--sc-hairline-strong); backdrop-filter:blur(10px);
   font-family:var(--sc-font-mono);font-size:.68rem;letter-spacing:.06em;color:var(--sc-ink);
@@ -218,6 +222,7 @@
 .bs-btn{
   display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
   padding:.72rem 1.3rem;border-radius:var(--sc-r-pill);
+  min-height:44px;touch-action:manipulation;-webkit-tap-highlight-color:transparent;
   font-family:var(--sc-font-display);font-size:.875rem;font-weight:500;letter-spacing:var(--sc-track-normal);
   text-decoration:none;cursor:pointer;border:1px solid transparent;white-space:nowrap;
   transition:transform 140ms var(--sc-ease-out), background 140ms var(--sc-ease-out), border-color 140ms var(--sc-ease-out), color 140ms var(--sc-ease-out);
@@ -369,7 +374,7 @@
 @media (min-width:760px){ .bs-split{grid-template-columns:1fr 1fr;gap:var(--sc-5)} }
 .bs-split figure{margin:0;position:relative;border:1px solid var(--sc-hairline);border-radius:var(--sc-r-md);overflow:hidden;background:var(--sc-surface);box-shadow:var(--sc-e1)}
 .bs-split svg{width:100%;height:auto;display:block}
-.bs-split figcaption{position:absolute;top:var(--sc-4);left:var(--sc-4);font-family:var(--sc-font-mono);font-size:.66rem;letter-spacing:var(--sc-track-wide);text-transform:uppercase;padding:.3rem .6rem;border-radius:var(--sc-r-sm);background:color-mix(in oklab,var(--sc-canvas) 82%,transparent);border:1px solid var(--sc-hairline)}
+.bs-split figcaption{position:absolute;top:var(--sc-4);left:var(--sc-4);font-family:var(--sc-font-mono);font-size:.72rem;letter-spacing:var(--sc-track-wide);text-transform:uppercase;padding:.3rem .6rem;border-radius:var(--sc-r-sm);background:color-mix(in oklab,var(--sc-canvas) 82%,transparent);border:1px solid var(--sc-hairline)}
 .bs-split figcaption.is-after{color:var(--sc-accent-text);border-color:color-mix(in oklab,var(--sc-accent) 40%,transparent)}
 
 /* ========================================================= 3: BRAND VALUE = */
@@ -404,9 +409,10 @@
 .bs-cat h3{font-family:var(--sc-font-display);font-size:var(--sc-t-lg);font-weight:500;letter-spacing:var(--sc-track-snug);margin:0}
 .bs-cat p{margin:0;font-size:.875rem;color:var(--sc-ink-soft);text-wrap:pretty}
 .bs-cat dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:.3rem .75rem;font-size:.76rem}
-.bs-cat dt{font-family:var(--sc-font-mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--sc-ink-soft)}
+.bs-cat dt{font-family:var(--sc-font-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--sc-ink-soft)}
 .bs-cat dd{margin:0;color:var(--sc-ink)}
-.bs-cat a{font-size:.8rem;color:var(--sc-accent-text);text-decoration:none;margin-top:auto;padding-top:var(--sc-2)}
+.bs-cat a{font-size:.8rem;color:var(--sc-accent-text);text-decoration:none;margin-top:auto;padding-top:var(--sc-2);
+  display:inline-flex;align-items:center;min-height:44px;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 .bs-cat a::after{content:" →"}
 .bs-cat a:hover{text-decoration:underline}
 .bs-rail-lead{flex:0 0 auto;width:clamp(16rem,24vw,20rem);display:flex;flex-direction:column;justify-content:flex-end;gap:var(--sc-4);padding-right:var(--sc-4)}
@@ -466,15 +472,17 @@
 .bs-chipbtn{
   font-family:var(--sc-font-mono);font-size:.72rem;letter-spacing:.04em;
   padding:.45rem .8rem;border-radius:var(--sc-r-pill);
+  /* the customiser is unusable on a phone if these are thumb-sized-thin */
+  min-height:44px;touch-action:manipulation;-webkit-tap-highlight-color:transparent;
   border:1px solid var(--sc-hairline-strong);background:transparent;color:var(--sc-ink-soft);cursor:pointer;
   transition:border-color 140ms var(--sc-ease-out), color 140ms var(--sc-ease-out), background 140ms var(--sc-ease-out);
 }
 .bs-chipbtn:hover{border-color:var(--sc-ink-soft);color:var(--sc-ink)}
 .bs-chipbtn[aria-pressed="true"]{background:var(--sc-accent);border-color:var(--sc-accent-text);color:var(--sc-accent-ink)}
 .bs-field{margin-top:var(--sc-5)}
-.bs-field__lab{font-family:var(--sc-font-mono);font-size:.66rem;letter-spacing:var(--sc-track-wide);text-transform:uppercase;color:var(--sc-ink-soft);display:block;margin-bottom:.5rem}
+.bs-field__lab{font-family:var(--sc-font-mono);font-size:.72rem;letter-spacing:var(--sc-track-wide);text-transform:uppercase;color:var(--sc-ink-soft);display:block;margin-bottom:.5rem}
 .bs-preview{border:1px solid var(--sc-hairline);border-radius:var(--sc-r-md);background:var(--sc-surface);overflow:hidden;box-shadow:var(--sc-e2)}
-.bs-preview__head{display:flex;justify-content:space-between;gap:var(--sc-3);padding:.7rem var(--sc-4);border-bottom:1px solid var(--sc-hairline);font-family:var(--sc-font-mono);font-size:.66rem;letter-spacing:.06em;color:var(--sc-ink-soft)}
+.bs-preview__head{display:flex;justify-content:space-between;gap:var(--sc-3);padding:.7rem var(--sc-4);border-bottom:1px solid var(--sc-hairline);font-family:var(--sc-font-mono);font-size:.7rem;letter-spacing:.06em;color:var(--sc-ink-soft)}
 .bs-preview__art{aspect-ratio:16/10;background:var(--sc-canvas)}
 .bs-preview__art svg{width:100%;height:100%}
 .bs-preview__specs{display:grid;grid-template-columns:auto 1fr;gap:.35rem .9rem;padding:var(--sc-4);font-size:.76rem;border-top:1px solid var(--sc-hairline)}
@@ -499,9 +507,10 @@
 @media (max-width:620px){ .bs-form__row{grid-template-columns:1fr} }
 .bs-form label{display:block;font-family:var(--sc-font-mono);font-size:.66rem;letter-spacing:var(--sc-track-wide);text-transform:uppercase;color:var(--sc-ink-soft);margin-bottom:.45rem}
 .bs-form input,.bs-form select,.bs-form textarea{
-  width:100%;padding:.7rem .85rem;border-radius:var(--sc-r-sm);
+  width:100%;padding:.7rem .85rem;border-radius:var(--sc-r-sm);min-height:44px;
   background:var(--sc-surface);border:1px solid var(--sc-hairline-strong);color:var(--sc-ink);
-  font-size:.9rem;transition:border-color 140ms var(--sc-ease-out);
+  font-size:.9rem; /* 16px-class size keeps iOS Safari from zooming on focus */
+  transition:border-color 140ms var(--sc-ease-out);
 }
 .bs-form input:hover,.bs-form select:hover,.bs-form textarea:hover{border-color:var(--sc-ink-soft)}
 .bs-form input:focus-visible,.bs-form select:focus-visible,.bs-form textarea:focus-visible{border-color:var(--sc-accent-text);outline:2px solid var(--sc-accent);outline-offset:2px}
@@ -874,7 +883,7 @@ body{padding-bottom:0}
           <g fill="#3A414B">
             <rect x="26" y="120" width="6" height="90"/><rect x="360" y="120" width="6" height="90"/>
           </g>
-          <text x="20" y="238" font-family="IBM Plex Mono, monospace" font-size="9" fill="#5F6771" letter-spacing="1">BEFORE · NO IDENTITY</text>
+          <text x="20" y="238" font-family="IBM Plex Mono, monospace" font-size="11" fill="#5F6771" letter-spacing="1">BEFORE · NO IDENTITY</text>
         </svg>
         <figcaption>Before</figcaption>
       </figure>
@@ -899,7 +908,7 @@ body{padding-bottom:0}
           <rect x="76" y="30" width="248" height="30" fill="#F0A830" opacity=".1"/>
           <ellipse cx="200" cy="214" rx="150" ry="26" fill="#F0A830" opacity=".13"/>
           <rect x="0" y="210" width="400" height="40" fill="#191C20"/>
-          <text x="20" y="238" font-family="IBM Plex Mono, monospace" font-size="9" fill="#F0A830" letter-spacing="1">AFTER · LEGIBLE AT 60 KM/H</text>
+          <text x="20" y="238" font-family="IBM Plex Mono, monospace" font-size="11" fill="#F0A830" letter-spacing="1">AFTER · LEGIBLE AT 60 KM/H</text>
         </svg>
         <figcaption class="is-after">After</figcaption>
       </figure>
@@ -1731,7 +1740,7 @@ function miniArt(kind){
       `<rect x="140" y="14" width="26" height="110" fill="#2C323A"/>
        <rect x="142" y="24" width="22" height="26" fill="#1F242B"/>
        <rect x="142" y="24" width="22" height="26" fill="#F0A830" opacity=".16"/>
-       <text x="153" y="41" text-anchor="middle" font-family="Archivo,sans-serif" font-size="7" font-weight="600" fill="#FFD489">${BRAND.name.toUpperCase().slice(0,8)}</text>
+       <text x="153" y="41" text-anchor="middle" font-family="Archivo,sans-serif" font-size="10" font-weight="600" fill="#FFD489">${BRAND.name.toUpperCase().slice(0,8)}</text>
        <rect x="140" y="62" width="26" height="18" fill="#1F242B"/>
        <rect x="140" y="86" width="26" height="14" fill="#1A1F25"/>`,
       "Free-standing illuminated pylon totem at a site boundary.");
@@ -1745,9 +1754,9 @@ function miniArt(kind){
        <rect x="158" y="38" width="34" height="12" fill="#2C323A"/><path d="M158 44h-14" stroke="#2C323A" stroke-width="3"/>
        <rect x="158" y="62" width="34" height="12" fill="#2C323A"/><path d="M158 68h-14" stroke="#2C323A" stroke-width="3"/>
        <rect x="158" y="86" width="34" height="12" fill="#2C323A"/><path d="M158 92h-14" stroke="#2C323A" stroke-width="3"/>
-       <text x="166" y="47" font-family="IBM Plex Mono,monospace" font-size="6" fill="#C6D6E4">A</text>
-       <text x="166" y="71" font-family="IBM Plex Mono,monospace" font-size="6" fill="#C6D6E4">B</text>
-       <text x="166" y="95" font-family="IBM Plex Mono,monospace" font-size="6" fill="#C6D6E4">C</text>`,
+       <text x="166" y="47" font-family="IBM Plex Mono,monospace" font-size="9" fill="#C6D6E4">A</text>
+       <text x="166" y="71" font-family="IBM Plex Mono,monospace" font-size="9" fill="#C6D6E4">B</text>
+       <text x="166" y="95" font-family="IBM Plex Mono,monospace" font-size="9" fill="#C6D6E4">C</text>`,
       "A wayfinding totem with directional pictogram blades.");
   }
   return base("", "");
@@ -1846,7 +1855,7 @@ function studioArt(){
         <path d="M${x} 92h${w}"/>
         <path d="M${x} 88v8M${x+w} 88v8"/>
       </g>
-      <text x="100" y="90" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="6.5" fill="#949AA3" paint-order="stroke" stroke="#0E1013" stroke-width="2.4">${(parseInt(size)*1000).toLocaleString("en-IN")} mm</text>
+      <text x="100" y="90" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" fill="#949AA3" paint-order="stroke" stroke="#0E1013" stroke-width="2.4">${(parseInt(size)*1000).toLocaleString("en-IN")} mm</text>
     </svg>`;
 }
 
