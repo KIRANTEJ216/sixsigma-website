@@ -7,6 +7,17 @@
 > environments" rather than "Selected work", because no photographed building on
 > the page is a confirmed Six Sigma job. Adding real case studies flips the
 > section back automatically — see `REAL_PROJECTS` in `index.html`.
+>
+> **Colour theme.** Two complete palettes ship. A cool light ground (`#EDF1F7`
+> canvas, white surfaces, dark ink) and a dark one (`#04050A` canvas, near-black
+> surfaces, light ink). The visitor toggle sits in the top bar, the choice is
+> stored in `localStorage["ss-theme"]`, and it falls back to the operating-system
+> preference. An inline script in `<head>` resolves the theme before first paint,
+> so there is no flash. Both themes were contrast-checked at desktop and mobile,
+> and the layout was audited for horizontal overflow from 320 px upward.
+>
+> Photographs are night scenes and are intentionally kept as dark plates in the
+> light theme rather than being recoloured — they are the warm/cool thesis.
 
 **Self-authored under explicit creative delegation.**
 The user supplied a complete, highly detailed creative brief and asked for it to be
@@ -170,16 +181,18 @@ is not a device, it is a different kind of page.
 > "Use subtle grid lines, measurement marks, blueprint overlays, and technical labels."
 > "Avoid generic stock images, excessive gradients, cartoon illustrations, and crowded layouts."
 
-Range chosen: **dense-technical within a premium-minimal shell.** Charcoal ground, one
-accent, generous air, but the *content* is information-forward — spec tables, tolerances,
-dimension lines, line-item ledgers, technical annotations. The brief asks for both, so
-both are honoured: minimal chrome, dense information.
+Range chosen: **dense-technical within a premium-minimal shell.** A restrained ground
+(in either palette — see the colour-theme note above), one accent, generous air, but
+the *content* is information-forward — spec tables, tolerances, dimension lines,
+line-item ledgers, technical annotations. The brief asks for both, so both are
+honoured: minimal chrome, dense information.
 
 **Palette rotation note (taste.md).** Off-black with warm amber is on the rotation list,
 and here it is *earned* rather than reached for: this page is literally about light being
 installed on a building. The amber is the LED. The cool near-white is the blueprint ink.
 The warm/cool split is the visual thesis. Avoiding the banned cream-and-brass artisan
-palette entirely.
+palette entirely. The light theme keeps the same amber accent against a cool pale
+ground, so the amber still reads as *installed light* rather than as a brand colour.
 
 ---
 
