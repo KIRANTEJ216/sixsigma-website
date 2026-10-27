@@ -7,4 +7,4 @@ Allow: /
 User-agent: GPTBot
 Disallow: /
 
-Sitemap: https://sixsigma-website.vercel.app/sitemap.xml
+Sitemap: https://www.big9signages.com/sitemap.xml

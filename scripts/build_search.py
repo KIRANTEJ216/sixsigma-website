@@ -5,11 +5,12 @@ from html import escape as E
 from lxml import html
 import json, re, os
 ROOT=Path(__file__).resolve().parents[1]
-BASE=os.environ.get('SITE_URL','https://sixsigma-website.vercel.app').rstrip('/')
+BASE=os.environ.get('SITE_URL','https://www.big9signages.com').rstrip('/')
 OLD='https://www.big9signages.com'
 posts=json.loads((ROOT/'content/blogger-posts.json').read_text())['feed']['entry']
+localized=json.loads((ROOT/'content/localized-images.json').read_text()) if (ROOT/'content/localized-images.json').exists() else {}
 paths={urlparse(next(l['href'] for l in p['link'] if l['rel']=='alternate')).path for p in posts}
-urls=['/','/blog/','/services/','/contact/']
+urls=['/','/blog/','/services/','/contact/','/about/','/gallery/']
 business={'@context':'https://schema.org','@type':'LocalBusiness','@id':BASE+'/#business','name':'Big 9 Signages','url':BASE,'telephone':'+919381556456','areaServed':['Hyderabad','Telangana']}
 def write(path,text):
  p=ROOT/path.lstrip('/');p.parent.mkdir(parents=True,exist_ok=True);p.write_text(text)
@@ -17,7 +18,7 @@ def page(path,title,desc,body,schema=None,canonical=None):
  url=BASE+path; canon=canonical or url
  data=[business,{'@context':'https://schema.org','@type':'BreadcrumbList','itemListElement':[{'@type':'ListItem','position':1,'name':'Home','item':BASE+'/'},{'@type':'ListItem','position':2,'name':title,'item':url}]}]
  if schema:data.append(schema)
- out=f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{E(title)} | Big 9 Signages</title><meta name="description" content="{E(desc,quote=True)}"><link rel="canonical" href="{canon}"><meta property="og:type" content="website"><meta property="og:title" content="{E(title,quote=True)}"><meta property="og:description" content="{E(desc,quote=True)}"><meta property="og:url" content="{canon}"><meta property="og:image" content="{BASE}/assets/photo/hero-before.webp"><link rel="stylesheet" href="/search-pages.css"><script type="application/ld+json">{json.dumps(data).replace('</','<\\/')}</script></head><body><a class="skip" href="#main">Skip to content</a><header><a class="brand" href="/">BIG 9 <span>SIGNAGES</span></a><nav aria-label="Main"><a href="/services/">Signage</a><a href="/blog/">Guides</a><a href="/contact/">Contact</a><a href="/#quote">Get a quote</a></nav></header><main id="main"><p class="eyebrow">Designed for visibility · Hyderabad</p><h1>{E(title)}</h1><p class="lead">{E(desc)}</p>{body}</main><footer>Big 9 Signages · <a href="tel:+919381556456">+91 9381 556 456</a><p><a href="/blog/">Signage guides</a> · <a href="/services/">Explore services</a> · <a href="/contact/">Contact and enquiries</a></p></footer></body></html>'''
+ out=f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{E(title)} | Big 9 Signages</title><meta name="description" content="{E(desc,quote=True)}"><link rel="canonical" href="{canon}"><meta property="og:type" content="website"><meta property="og:title" content="{E(title,quote=True)}"><meta property="og:description" content="{E(desc,quote=True)}"><meta property="og:url" content="{canon}"><meta property="og:image" content="{BASE}/assets/photo/hero-before.webp"><link rel="stylesheet" href="/search-pages.css"><script type="application/ld+json">{json.dumps(data).replace('</','<\\/')}</script></head><body><a class="skip" href="#main">Skip to content</a><header><a class="brand" href="/">BIG 9 <span>SIGNAGES</span></a><nav aria-label="Main"><a href="/services/">Signage</a><a href="/blog/">Guides</a><a href="/gallery/">Gallery</a><a href="/about/">About</a><a href="/contact/">Contact</a><a href="/#quote">Get a quote</a></nav></header><main id="main"><p class="eyebrow">Designed for visibility · Hyderabad</p><h1>{E(title)}</h1><p class="lead">{E(desc)}</p>{body}</main><footer>Big 9 Signages · <a href="tel:+919381556456">+91 9381 556 456</a><p><a href="/blog/">Signage guides</a> · <a href="/services/">Explore services</a> · <a href="/contact/">Contact and enquiries</a></p></footer></body></html>'''
  write(path+'index.html' if path.endswith('/') else path,out)
  if path not in urls:urls.append(path)
 items=[]; images=[]
@@ -33,14 +34,17 @@ for p in posts:
    if v.strip().lower().startswith(('javascript:','data:')):el.attrib.pop(a,None)
    if a=='href' and urlparse(v).netloc=='www.big9signages.com' and urlparse(v).path in paths:el.set(a,urlparse(v).path)
  for im in node.xpath('.//img'):
+  if not im.get('src'): im.drop_tree(); continue
   im.set('loading','lazy');im.set('decoding','async');im.set('alt',im.get('alt') or title.split('|')[0].strip())
-  if im.get('src'):images.append({'src':im.get('src'),'article':old,'alt':im.get('alt')})
+  if im.get('src'):
+   original=im.get('src');images.append({'src':original,'article':old,'alt':im.get('alt')})
+   if original in localized:im.set('src',localized[original]);im.set('width','1200');im.set('height','900')
  text=' '.join(node.text_content().split());desc=text[:157].rsplit(' ',1)[0]+'…'
  author=p.get('author',[{}])[0].get('name',{}).get('$t','Big 9 Signages')
- schema={'@context':'https://schema.org','@type':'BlogPosting','headline':title,'datePublished':p['published']['$t'],'dateModified':p['updated']['$t'],'author':{'@type':'Person','name':author},'publisher':{'@id':BASE+'/#business'},'mainEntityOfPage':old}
+ schema={'@context':'https://schema.org','@type':'BlogPosting','headline':title,'datePublished':p['published']['$t'],'dateModified':p['updated']['$t'],'author':{'@type':'Person','name':author},'publisher':{'@id':BASE+'/#business'},'mainEntityOfPage':BASE+path}
  body=f'<p class="meta">By {E(author)} · Published {p["published"]["$t"][:10]} · Updated {p["updated"]["$t"][:10]}</p><article>'+html.tostring(node,encoding='unicode')+'</article><aside><h2>Planning a similar sign?</h2><p>Choose your signage and share your requirements for a site assessment.</p><a class="button" href="/#quote">Request a quotation</a></aside>'
  # Old blog remains authoritative until an intentional domain cutover.
- page(path,title,desc,body,schema,old)
+ page(path,title,desc,body,schema)
  items.append((title,path,desc))
 write('content/image-manifest.json',json.dumps(images,indent=2))
 page('/blog/','Signage guides and ideas','Explore the existing Big 9 Signages articles on materials, lighting and signage for businesses.', '<div class="grid">'+''.join(f'<article class="card"><h2><a href="{path}">{E(title)}</a></h2><p>{E(desc)}</p></article>' for title,path,desc in items)+'</div>')
@@ -51,14 +55,20 @@ for slug,name,intro,materials,factors,key in services:
  related=[x for x in items if key in x[0].lower()][:3]
  body=f'<h2>Where does it work best?</h2><p>{intro} The final specification depends on your location, surface and viewing distance.</p><h2>Materials and options</h2><p>{materials}. Confirm the finish and indoor or outdoor exposure during the site assessment.</p><h2>What affects the price?</h2><p>{factors}. Share photographs and approximate dimensions for an initial discussion; a firm price requires an agreed specification.</p><h2>Installation and maintenance</h2><p>Ask the team to confirm access requirements, electrical work where needed, cleaning instructions and the warranty for your selected materials in the written quotation.</p><h2>What should I send for a quotation?</h2><p>Your location, a frontage or installation photo, approximate width and height, quantity, preferred lighting and target date.</p><a class="button" href="/#quote">Request {E(name.lower())}</a><h2>Related guides</h2><ul>'+''.join(f'<li><a href="{x[1]}">{E(x[0])}</a></li>' for x in related)+'</ul>'
  photo=next((im for im in images if key in im['article'].lower()),None)
- if photo:body='<img class="service-image" loading="lazy" decoding="async" src="'+E(photo['src'],quote=True)+'" alt="'+E(photo['alt'],quote=True)+'">'+body
+ if photo:body='<img class="service-image" loading="lazy" decoding="async" width="1200" height="900" src="'+E(localized.get(photo['src'],photo['src']),quote=True)+'" alt="'+E(photo['alt'],quote=True)+'">'+body
  page(path,name+' in Hyderabad',intro,body,{'@context':'https://schema.org','@type':'Service','name':name,'serviceType':name,'provider':{'@id':BASE+'/#business'},'areaServed':'Hyderabad','url':BASE+path})
  servicecards.append(f'<article class="card"><h2><a href="{path}">{name}</a></h2><p>{intro}</p></article>')
 page('/services/','Signage solutions in Hyderabad','Compare signage options and choose the right starting point for your enquiry.','<div class="grid">'+''.join(servicecards)+'</div>')
 page('/contact/','Contact Big 9 Signages','Discuss your signage requirements in Hyderabad and Telangana.','<h2>Speak with the team</h2><p><a href="tel:+919381556456">Call +91 9381 556 456</a></p><p><a class="button" href="https://wa.me/919381556456">Chat on WhatsApp</a></p><p>Share the signage type, city, approximate dimensions, quantity and target date. Confirm site-visit availability directly with the team.</p><h2>Your enquiry details</h2><p>The website prepares your enquiry for WhatsApp. You review and send it there. Do not include payment details or sensitive documents. For questions about your enquiry data, contact the team using the number above.</p>')
+page('/about/','About Big 9 Signages','A Hyderabad signage company designing, fabricating and installing signs for retail, offices and commercial spaces.','<h2>Built for visibility</h2><p>Big 9 Signages designs and builds signage for retail, corporate, industrial and commercial spaces in Hyderabad. Projects range from storefront name boards to building branding, with material and installation choices based on the site.</p><h2>What we make</h2><ul><li>LED boards and illuminated letters</li><li>Acrylic logos and interior branding</li><li>Pylon and monument signs</li><li>Vehicle graphics</li><li>Wayfinding and safety signage</li></ul><p>Contact us with your location, a photo and approximate dimensions to discuss options.</p><a class="button" href="/#quote">Plan your sign</a>')
+gallery=[]
+for image in images:
+ if '2025/12/xyz.html' in image['article'] and image['src'] in localized:
+  gallery.append('<figure class="card"><img class="service-image" width="1200" height="900" loading="lazy" decoding="async" src="'+E(localized[image['src']],quote=True)+'" alt="'+E(image['alt'],quote=True)+'"><figcaption>'+E(image['alt'])+'</figcaption></figure>')
+page('/gallery/','Customer signage gallery','See signage images from the existing Big 9 Signages collection and choose a style for your enquiry.','<div class="grid">'+''.join(gallery)+'</div><p><a class="button" href="/#quote">Request similar signage</a></p>')
 write('robots.txt','User-agent: *\nAllow: /\n\nUser-agent: OAI-SearchBot\nAllow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nSitemap: '+BASE+'/sitemap.xml\n')
-# Imported posts retain original canonical until domain cutover; omit duplicates from sitemap.
-indexurls=[u for u in urls if u not in paths or BASE==OLD]
+# Same canonical domain at cutover: preserve every old article path.
+indexurls=urls
 write('sitemap.xml','<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+''.join('<url><loc>'+BASE+u+'</loc></url>' for u in indexurls)+'</urlset>')
-write('content/url-map.json',json.dumps([{'original':OLD+p,'preserved_path':p,'preview':BASE+p} for p in sorted(paths)],indent=2))
+write('content/url-map.json',json.dumps([{'original':OLD+p,'preserved_path':p,'new':BASE+p} for p in sorted(paths)],indent=2))
 print(f'Built {len(posts)} preserved articles and {len(services)} service pages; {len(indexurls)} canonical sitemap URLs')
