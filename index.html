@@ -587,6 +587,17 @@ body{padding-bottom:0}
   .bs-hero__h1{font-size:clamp(1.6rem,1.1rem + 1.7vw,2.2rem)}
   .bs-claims__big{font-size:var(--sc-t-2xl)}
 }
+
+.b9-building-sign{position:absolute;top:36%;left:8%;width:84%;text-align:center;color:#ffe0a0;font:700 clamp(18px,3.1vw,54px)/1.2 Archivo,sans-serif;letter-spacing:.035em;text-shadow:0 0 5px #ffbc60,0 0 24px #ffa634,0 0 60px #eaa14d;background:linear-gradient(#191b20,#292a2d);padding:16px 8px;box-shadow:0 8px 30px #0008;border:1px solid #ffffff26}
+/* Focused Big 9 catalogue and enquiry enhancements */
+html{scroll-padding-top:100px} :focus-visible{outline:3px solid var(--sc-accent);outline-offset:5px}
+.b9-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;margin-top:36px}
+.b9-gallery article{border:1px solid var(--sc-line);border-radius:18px;overflow:hidden;padding:16px;background:var(--sc-surface)}
+.b9-gallery img{width:100%;height:340px;object-fit:contain;background:#fff;border-radius:10px}
+.b9-gallery h3{margin:20px 0}.b9-types{border:1px solid var(--sc-line);border-radius:12px;padding:20px;margin:0 0 24px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.b9-types legend{font-weight:600;padding:0 8px}.b9-types p{grid-column:1/-1;font-size:14px}.b9-types label{display:flex;align-items:center;gap:9px;font-size:13px;text-transform:none;letter-spacing:0}.b9-types input{width:18px!important;height:18px;accent-color:#bd780c;flex:none}
+@media(max-width:650px){.b9-gallery{grid-template-columns:1fr}.b9-gallery img{height:260px}.b9-types{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -602,13 +613,13 @@ body{padding-bottom:0}
       <rect x="1" y="1" width="30" height="30" rx="7" stroke="currentColor" stroke-opacity=".22"/>
       <path d="M7 22h18M10.5 22V10h11v12" stroke="var(--sc-accent)" stroke-width="2" stroke-linecap="square"/>
     </svg>
-    <b data-brand-name>Six Sigma Solutions</b>
+    <b data-brand-name>Big 9 Signages</b>
   </a>
   <nav class="bs-nav" aria-label="Sections">
     <a href="#categories">Solutions</a>
     <a href="#materials">Materials</a>
     <a href="#process">Process</a>
-    <a href="#work" id="nav-work">Environments</a>
+    <a href="#customer-gallery" id="nav-work">Gallery</a>
     <a href="#faq">FAQ</a>
   </nav>
   <button class="bs-theme" id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark theme">
@@ -693,7 +704,7 @@ body{padding-bottom:0}
         <p class="bs-hero__line">Then we turn it on, and it reads from the street.</p>
         <div class="bs-hero__cta">
           <a class="bs-btn bs-btn--primary bs-btn--lg" href="#quote">Design my signage</a>
-          <a class="bs-btn bs-btn--ghost bs-btn--lg" data-call href="tel:+919642386767">Request a site visit</a>
+          <a class="bs-btn bs-btn--ghost bs-btn--lg" data-call href="tel:+919381556456">Request a site visit</a>
         </div>
       </div>
     </div>
@@ -702,7 +713,7 @@ body{padding-bottom:0}
     <div class="bs-draw" aria-hidden="true">
       <div class="bs-photo">
         <figure class="bs-photo__layer bs-photo__layer--before"><img src="assets/photo/hero-before.webp" width="1400" height="1855" alt="" decoding="async" fetchpriority="high"></figure>
-        <figure class="bs-photo__layer bs-photo__layer--after"><img src="assets/photo/hero-after.webp" width="1400" height="1855" alt="" decoding="async" fetchpriority="high"></figure>
+        <figure class="bs-photo__layer bs-photo__layer--after"><img src="assets/photo/hero-before.webp" width="1400" height="1855" alt="" decoding="async" fetchpriority="high"><span class="b9-building-sign">big9signages</span></figure>
         <span class="bs-photo__sheen"></span>
         <span class="bs-photo__grain"></span>
         <span class="bs-photo__vignette"></span>
@@ -834,7 +845,7 @@ body{padding-bottom:0}
             <path d="M118 312h584M702 206v106" stroke="#9FB4C9" stroke-width="1" opacity=".4"/>
             <text x="410" y="272" text-anchor="middle" font-size="42"
                   fill="none" stroke="#C6D6E4" stroke-width="1.2" opacity=".85"
-                  data-sign-text>BRAND SIGNAGES</text>
+                  data-sign-text>BIG9SIGNAGES</text>
           </g>
 
           <!-- C · solid panel faces -->
@@ -846,8 +857,8 @@ body{padding-bottom:0}
 
           <!-- D · letter faces + illumination -->
           <g class="dr__face">
-            <text x="410" y="271" text-anchor="middle" font-size="42" fill="#59616A" data-sign-text>BRAND SIGNAGES</text>
-            <text class="dr__lit" x="410" y="271" text-anchor="middle" font-size="42" fill="#FFD489" data-sign-text>BRAND SIGNAGES</text>
+            <text x="410" y="271" text-anchor="middle" font-size="42" fill="#59616A" data-sign-text>BIG9SIGNAGES</text>
+            <text class="dr__lit" x="410" y="271" text-anchor="middle" font-size="42" fill="#FFD489" data-sign-text>BIG9SIGNAGES</text>
           </g>
 
           <g class="dr__lit">
@@ -924,7 +935,7 @@ body{padding-bottom:0}
           <rect x="60" y="170" width="280" height="40" fill="#181C21"/>
           <rect x="176" y="170" width="48" height="40" fill="#0D1013"/>
           <rect x="76" y="30" width="248" height="30" fill="#242A31" stroke="#464D55"/>
-          <text x="200" y="52" text-anchor="middle" font-family="Archivo, sans-serif" font-size="15" font-weight="600" fill="#FFD489">YOUR BRAND</text>
+          <text x="200" y="52" text-anchor="middle" font-family="Archivo, sans-serif" font-size="15" font-weight="600" fill="#FFD489">BIG9SIGNAGES</text>
           <rect x="76" y="30" width="248" height="30" fill="#F0A830" opacity=".1"/>
           <ellipse cx="200" cy="214" rx="150" ry="26" fill="#F0A830" opacity=".13"/>
           <rect x="0" y="210" width="400" height="40" fill="#191C20"/>
@@ -1197,8 +1208,8 @@ body{padding-bottom:0}
         </div>
 
         <p style="margin-top:var(--sc-6)">
-          <a class="bs-btn bs-btn--ghost" data-call href="tel:+919642386767">Call <span data-phone-display>+91 96423 86767</span></a>
-          <a class="bs-btn bs-btn--ghost" data-wa href="https://wa.me/919642386767" style="margin-left:.5rem">WhatsApp</a>
+          <a class="bs-btn bs-btn--ghost" data-call href="tel:+919381556456">Call <span data-phone-display>+91 9381 556 456</span></a>
+          <a class="bs-btn bs-btn--ghost" data-wa href="https://wa.me/919381556456" style="margin-left:.5rem">WhatsApp</a>
         </p>
       </div>
 
@@ -1224,8 +1235,8 @@ body{padding-bottom:0}
               <span class="bs-form__err" id="e-phone" role="alert"></span>
             </div>
             <div>
-              <label for="f-email">Email <span class="bs-form__req" aria-hidden="true">*</span></label>
-              <input id="f-email" name="email" type="email" required autocomplete="email" aria-describedby="e-email">
+              <label for="f-email">Email (optional)</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" aria-describedby="e-email">
               <span class="bs-form__err" id="e-email" role="alert"></span>
             </div>
           </div>
@@ -1250,7 +1261,7 @@ body{padding-bottom:0}
           </div>
 
           <div>
-            <label for="f-req">Required signage</label>
+            <fieldset class="b9-types"><legend>Select your signage requirements</legend><p>Choose one or more. We can help you decide on WhatsApp.</p><label><input type="checkbox" name="signageTypes" value="Storefront signs"> Storefront signs</label><label><input type="checkbox" name="signageTypes" value="LED sign boards"> LED sign boards</label><label><input type="checkbox" name="signageTypes" value="3D channel letters"> 3D channel letters</label><label><input type="checkbox" name="signageTypes" value="Acrylic signs"> Acrylic signs</label><label><input type="checkbox" name="signageTypes" value="Glass signs"> Glass signs</label><label><input type="checkbox" name="signageTypes" value="Neon signs"> Neon signs</label><label><input type="checkbox" name="signageTypes" value="ACP facade signs"> ACP facade signs</label><label><input type="checkbox" name="signageTypes" value="Pylon signs"> Pylon signs</label><label><input type="checkbox" name="signageTypes" value="Monument signs"> Monument signs</label><label><input type="checkbox" name="signageTypes" value="Multi-tenant directory"> Multi-tenant directory</label><label><input type="checkbox" name="signageTypes" value="Wayfinding signs"> Wayfinding signs</label><label><input type="checkbox" name="signageTypes" value="Safety signs"> Safety signs</label><label><input type="checkbox" name="signageTypes" value="Industrial signs"> Industrial signs</label><label><input type="checkbox" name="signageTypes" value="Digital signs"> Digital signs</label><label><input type="checkbox" name="signageTypes" value="Hoardings"> Hoardings</label><label><input type="checkbox" name="signageTypes" value="Vehicle branding"> Vehicle branding</label><label><input type="checkbox" name="signageTypes" value="Promotional signs"> Promotional signs</label><label><input type="checkbox" name="signageTypes" value="Standees"> Standees</label><label><input type="checkbox" name="signageTypes" value="Barricades"> Barricades</label><label><input type="checkbox" name="signageTypes" value="Engraving"> Engraving</label><label><input type="checkbox" name="signageTypes" value="QR code signs"> QR code signs</label><label><input type="checkbox" name="signageTypes" value="Other / please advise"> Other / please advise</label></fieldset><label for="f-req">Additional signage details</label>
             <textarea id="f-req" name="requirement" rows="3" data-bom-mirror
               placeholder="Filled in from your specification above"></textarea>
             <span class="bs-form__err" id="e-req" role="alert"></span>
@@ -1267,13 +1278,13 @@ body{padding-bottom:0}
             <textarea id="f-msg" name="message" rows="3" placeholder="Anything else we should know: access, timings, permissions, deadline."></textarea>
           </div>
 
-          <button class="bs-btn bs-btn--primary bs-btn--lg" type="submit">Request my quotation</button>
-          <p class="bs-form__note">We reply to enquiries within one working day. We do not sell or share your details.</p>
+          <button class="bs-btn bs-btn--primary bs-btn--lg" type="submit">Continue on WhatsApp</button>
+          <p class="bs-form__note">Continuing opens WhatsApp with your details and selected requirements. Review and send the message to Big 9 Signages. Final pricing follows a site assessment.</p>
         </div>
 
         <div class="bs-form__done" role="status">
-          <h3>Thank you. Your enquiry is ready.</h3>
-          <p>Your email app should now be open with the quotation request filled in, including your specification. Send it and we will come back to you within one working day.</p>
+          <h3>Your WhatsApp enquiry is ready.</h3><a id="whatsapp-resume" class="bs-btn bs-btn--primary" hidden>Open WhatsApp again</a>
+          <p>Your quotation request is prepared. Review it in WhatsApp and press Send to start the conversation. It has not been submitted until you send it.</p>
           <p class="bs-form__note" data-fallback hidden><span data-fallback-label>email us directly at</span> <span data-email-fallback></span>.</p>
         </div>
       </form>
@@ -1281,6 +1292,7 @@ body{padding-bottom:0}
   </div>
 </section>
 
+<section id="customer-gallery" class="sc-section"><div class="sc-wrap"><p class="bs-plate__tag">The Big 9 collection</p><h2 class="sc-display sc-display--md">Your space. Your signature.</h2><p class="sc-body">Explore images from our existing signage catalogue, then tell us what you have in mind.</p><div class="b9-gallery"><article><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjHltmelR6Ut_o90yYx7zPzu-XLCvIg14kXDMWX_qEOFRv8ORWW8HCH-Wc9eJ4WWINJd0dNOuvC8ADHXxWPVmC2jTZiUViBRnZh-JE-zD5rada3OkAnKq28CugGk1b6rvIO9i76bNQn4I_fwdhStYwiupTl0r6Fp3njUkLLSqF03-yZmx2RVLcslcwmSUE/s16000-rw/1-Big-9-signages-LED-Signages-in-Hyderabad-for-saloons-spas-gym.png" alt="LED Sign Board — from the Big 9 Signages catalogue" loading="lazy" decoding="async" width="640" height="440"><h3>LED Sign Board</h3><a class="bs-btn bs-btn--ghost" href="#quote">Request this signage</a></article><article><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj88wVJteWG3MaJCGHSmmx_MLa-OMY1pdmxcGWlgW5HcSguI6D2YEIXzJsHuBkOs_OkF0ea3BupKxdKJ7N5SxF6X7wa-aNRVzjto3-b2MnKVqjTDPjB-5NBzAZmB5SZuaXhWTeVT1L9BnhVijm2YRAtmJr4hqWpwlSOm2YDD3Wj0F6bH-Yf38_E-hD4fNg/s16000-rw/3-Big-9-signages-logo-retial-store-lobby-branding-signages.png" alt="3D Acrylic Letters — from the Big 9 Signages catalogue" loading="lazy" decoding="async" width="640" height="440"><h3>3D Acrylic Letters</h3><a class="bs-btn bs-btn--ghost" href="#quote">Request this signage</a></article></div></div></section>
 <section class="sc-section" id="faq" data-plate="10" data-plate-name="Questions" data-stage="Installation" style="padding-top:0">
   <div class="sc-wrap">
     <div class="bs-plate" data-sc-in data-sc-stagger="60">
@@ -1293,18 +1305,18 @@ body{padding-bottom:0}
 
 <footer style="border-top:1px solid var(--sc-hairline);padding:var(--sc-7) 0">
   <div class="sc-wrap" style="display:flex;flex-wrap:wrap;gap:var(--sc-5);align-items:center;justify-content:space-between">
-    <p style="margin:0;font-family:var(--sc-font-mono);font-size:.72rem;letter-spacing:.06em;color:var(--sc-ink-soft)" data-footer-name>Six Sigma Solutions</p>
+    <p style="margin:0;font-family:var(--sc-font-mono);font-size:.72rem;letter-spacing:.06em;color:var(--sc-ink-soft)" data-footer-name>Big 9 Signages</p>
     <p style="margin:0;font-size:.78rem;color:var(--sc-ink-soft)">Outdoor sign board manufacture, fabrication and installation.</p>
   </div>
 </footer>
 </main>
 
 <nav class="bs-mobar" aria-label="Contact">
-  <a data-call href="tel:+919642386767">
+  <a data-call href="tel:+919381556456">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
     Call
   </a>
-  <a data-wa href="https://wa.me/919642386767">
+  <a data-wa href="https://wa.me/919381556456">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 20.5l1.8-5.3A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8.6 9.2c.2-.5.4-.5.6-.5h.5c.2 0 .4 0 .6.5l.7 1.6c0 .2 0 .3-.1.5l-.4.5c-.1.2-.3.3-.1.6a7 7 0 0 0 3.2 3c.3.2.5.1.7-.1l.5-.6c.2-.2.3-.2.5-.1l1.6.8c.2.1.4.2.4.4v.6c0 .5-.4 1-1 1.1a8.5 8.5 0 0 1-9-6.5"/></svg>
     WhatsApp
   </a>
@@ -1313,7 +1325,7 @@ body{padding-bottom:0}
 
 <!-- Both schemas below are populated from the BRAND / FAQS config so the
      structured data can never drift from the copy the visitor actually reads. -->
-<script type="application/ld+json" id="ld-business">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Six Sigma Solutions"}</script>
+<script type="application/ld+json" id="ld-business">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Big 9 Signages"}</script>
 <script type="application/ld+json" id="faq-schema">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[]}</script>
 
 <script src="scrollcraft.js"></script>
@@ -1323,11 +1335,11 @@ body{padding-bottom:0}
    Everything marked REPLACE is a placeholder the site owner must supply.
    =========================================================================== */
 const BRAND = {
-  name:            "Six Sigma Solutions",
-  legalName:       "Six Sigma Solutions",
-  phoneDisplay:    "+91 96423 86767",
-  phoneDial:       "919642386767",           // digits + country code, no +
-  whatsapp:        "919642386767",
+  name:            "Big 9 Signages",
+  legalName:       "Big 9 Signages",
+  phoneDisplay:    "+91 9381 556 456",
+  phoneDial:       "919381556456",           // digits + country code, no +
+  whatsapp:        "919381556456",
   email:           "",                       // REPLACE — left blank rather than invented
   url:             "",                       // REPLACE — canonical/OG fall back to the served origin
   cities:          [],                       // REPLACE e.g. ["Pune","Mumbai","Nashik"]
@@ -1729,7 +1741,7 @@ heroSync();
 heroReduce.addEventListener("change", heroSync);
 
 /* the drawn sign reads the brand name, from one config value */
-$$("[data-sign-text]").forEach(t => { t.textContent = BRAND.name.toUpperCase(); });
+$$("[data-sign-text]").forEach(t => { t.textContent = "BIG9SIGNAGES"; });
 
 /* ====================================== category + project rails (pan acts) */
 function miniArt(kind){
@@ -1806,7 +1818,7 @@ const WORK_CARDS = WORK_MODE === "work"
 
 /* heading, lead and plate name follow the mode */
 $("#work").dataset.plateName = WORK_MODE === "work" ? "Work" : "Environments";
-$("#nav-work").textContent = WORK_MODE === "work" ? "Work" : "Environments";
+$("#nav-work").textContent = "Gallery";
 $("#work-lead-h").textContent = WORK_MODE === "work" ? "Selected work" : "Typical environments";
 $("#work-lead-p").textContent = WORK_MODE === "work"
   ? "Completed projects: where it was built, what the signage had to do, and what it does now."
@@ -1961,7 +1973,7 @@ form.addEventListener("submit", e => {
   const need = [
     ["#f-name","#e-name","Please tell us your name."],
     ["#f-phone","#e-phone","A number we can reach you on."],
-    ["#f-email","#e-email","An email address for the quotation."],
+
     ["#f-city","#e-city","Which city is the site in?"]
   ];
   need.forEach(([sel, err, msg]) => {
@@ -1981,7 +1993,9 @@ form.addEventListener("submit", e => {
     `Name: ${fd.get("name")}`,
     `Company: ${fd.get("company") || "-"}`,
     `Phone: ${fd.get("phone")}`,
-    `Email: ${fd.get("email")}`,
+    `Email: ${fd.get("email") || "Not supplied"}`,
+    `Dimensions: ${fd.get("dimensions") || "To be measured"}`,
+    `Signage types: ${fd.getAll("signageTypes").join(", ") || "Please advise"}`,
     `City: ${fd.get("city")}`,
     `Business type: ${fd.get("businessType") || "-"}`,
     "",
@@ -1995,8 +2009,10 @@ form.addEventListener("submit", e => {
   /* No endpoint configured: hand the enquiry over the channel we actually have.
      An empty email used to open a blank compose window, which loses the lead. */
   function deliver(subject, body){
-    if (BRAND.email){ window.location.href = `mailto:${BRAND.email}?subject=${subject}&body=${body}`; return; }
-    if (BRAND.phoneDial) window.location.href = `tel:${BRAND.phoneDial}`;
+    const url = `https://wa.me/${BRAND.whatsapp}?text=${body}`;
+    const link = document.querySelector("#whatsapp-resume");
+    link.href = url; link.hidden = false;
+    window.location.href = url;
   }
 
   const subject = encodeURIComponent(`Signage enquiry: ${fd.get("name")}, ${fd.get("city")}`);
