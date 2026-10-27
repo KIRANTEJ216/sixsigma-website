@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<script src="/enquiry-events.js" defer></script>
 <meta charset="utf-8">
 <!-- Resolve the colour theme before first paint. Without this the page renders
      in the light palette and then snaps to dark, which reads as a flash. -->
@@ -19,16 +20,16 @@
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-<title>Outdoor Signage Manufacturer &amp; Installation | LED, ACP &amp; Neon Signage</title>
+<title>Sign Boards in Hyderabad | Big 9 Signages</title>
 <meta name="description" content="Custom outdoor signage designed, fabricated, illuminated and installed for commercial buildings, storefronts, offices and retail. LED sign boards, ACP and aluminium facades, acrylic, PVC, neon and wayfinding, with site measurement and full installation.">
-<link rel="canonical" href="">
+<link rel="canonical" href="https://www.big9signages.com/">
 <meta name="theme-color" content="#EDF1F7">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Make Your Brand Impossible to Miss | Custom Outdoor Signage">
 <meta property="og:description" content="Outdoor sign board manufacturer: design, fabrication, illumination and installation of LED, ACP, acrylic, PVC and neon signage.">
-<meta property="og:image" content="">
-<meta name="twitter:image" content="">
+<meta property="og:image" content="https://www.big9signages.com/assets/photo/hero-before.webp">
+<meta name="twitter:image" content="https://www.big9signages.com/assets/photo/hero-before.webp">
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230B0C0E'/><path d='M8 21h16M11 21V11h10v10' stroke='%23F0A830' stroke-width='2' fill='none'/></svg>">
@@ -589,12 +590,29 @@ body{padding-bottom:0}
 }
 
 .b9-building-sign{position:absolute;top:36%;left:8%;width:84%;text-align:center;color:#ffe0a0;font:700 clamp(18px,3.1vw,54px)/1.2 Archivo,sans-serif;letter-spacing:.035em;text-shadow:0 0 5px #ffbc60,0 0 24px #ffa634,0 0 60px #eaa14d;background:linear-gradient(#191b20,#292a2d);padding:16px 8px;box-shadow:0 8px 30px #0008;border:1px solid #ffffff26}
+/* Mobile-first catalogue, tactile choices, calmer scroll on small screens. */
+.bs-mobar{grid-template-columns:repeat(4,minmax(0,1fr))}
+.b9-types label{min-height:44px;padding:5px 8px;border:1px solid var(--sc-hairline);border-radius:8px;cursor:pointer}
+.b9-types label:has(input:checked){border-color:var(--sc-accent);background:color-mix(in oklab,var(--sc-accent) 12%,transparent)}
+.b9-gallery img{object-fit:cover}
+#signage-guides ul{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:12px;list-style:none;padding:0;margin:28px 0}
+#signage-guides li a{display:flex;align-items:center;min-height:52px;padding:14px 18px;border-radius:12px;border:1px solid var(--sc-hairline);text-decoration:none;background:var(--sc-surface);font-weight:600}
+@media(max-width:860px){
+ .bs-mobar a{font-size:.63rem;letter-spacing:0;min-height:60px}
+ .b9-building-sign{top:37%;left:5%;width:90%;font-size:clamp(15px,4.8vw,29px);padding:10px 3px}
+ .bs-hero__copy > *{bottom:calc(60px + 2.8rem)}
+ .bs-hero__cta{gap:10px}
+ .b9-types{padding:14px;gap:7px}
+ .b9-types label{font-size:14px}
+}
+@media(max-width:380px){.bs-mobar a{font-size:.59rem}.b9-building-sign{top:39%}}
+@media(prefers-reduced-motion:reduce){.bs-photo__layer--after{-webkit-mask-image:none;mask-image:none}.bs-photo__sheen{display:none}}
 /* Focused Big 9 catalogue and enquiry enhancements */
 html{scroll-padding-top:100px} :focus-visible{outline:3px solid var(--sc-accent);outline-offset:5px}
 .b9-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;margin-top:36px}
-.b9-gallery article{border:1px solid var(--sc-line);border-radius:18px;overflow:hidden;padding:16px;background:var(--sc-surface)}
-.b9-gallery img{width:100%;height:340px;object-fit:contain;background:#fff;border-radius:10px}
-.b9-gallery h3{margin:20px 0}.b9-types{border:1px solid var(--sc-line);border-radius:12px;padding:20px;margin:0 0 24px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.b9-gallery article{border:1px solid var(--sc-hairline);border-radius:18px;overflow:hidden;padding:16px;background:var(--sc-surface)}
+.b9-gallery img{width:100%;height:340px;object-fit:cover;background:#fff;border-radius:10px}
+.b9-gallery h3{margin:20px 0}.b9-types{border:1px solid var(--sc-hairline);border-radius:12px;padding:20px;margin:0 0 24px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .b9-types legend{font-weight:600;padding:0 8px}.b9-types p{grid-column:1/-1;font-size:14px}.b9-types label{display:flex;align-items:center;gap:9px;font-size:13px;text-transform:none;letter-spacing:0}.b9-types input{width:18px!important;height:18px;accent-color:#bd780c;flex:none}
 @media(max-width:650px){.b9-gallery{grid-template-columns:1fr}.b9-gallery img{height:260px}.b9-types{grid-template-columns:1fr}}
 
@@ -616,10 +634,11 @@ html{scroll-padding-top:100px} :focus-visible{outline:3px solid var(--sc-accent)
     <b data-brand-name>Big 9 Signages</b>
   </a>
   <nav class="bs-nav" aria-label="Sections">
-    <a href="#categories">Solutions</a>
+    <a href="/services/">Solutions</a>
+    <a href="/blog/">Blog</a>
     <a href="#materials">Materials</a>
     <a href="#process">Process</a>
-    <a href="#customer-gallery" id="nav-work">Gallery</a>
+    <a href="/gallery/" id="nav-work">Gallery</a>
     <a href="#faq">FAQ</a>
   </nav>
   <button class="bs-theme" id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark theme">
@@ -1292,14 +1311,15 @@ html{scroll-padding-top:100px} :focus-visible{outline:3px solid var(--sc-accent)
   </div>
 </section>
 
-<section id="customer-gallery" class="sc-section"><div class="sc-wrap"><p class="bs-plate__tag">The Big 9 collection</p><h2 class="sc-display sc-display--md">Your space. Your signature.</h2><p class="sc-body">Explore images from our existing signage catalogue, then tell us what you have in mind.</p><div class="b9-gallery"><article><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjHltmelR6Ut_o90yYx7zPzu-XLCvIg14kXDMWX_qEOFRv8ORWW8HCH-Wc9eJ4WWINJd0dNOuvC8ADHXxWPVmC2jTZiUViBRnZh-JE-zD5rada3OkAnKq28CugGk1b6rvIO9i76bNQn4I_fwdhStYwiupTl0r6Fp3njUkLLSqF03-yZmx2RVLcslcwmSUE/s16000-rw/1-Big-9-signages-LED-Signages-in-Hyderabad-for-saloons-spas-gym.png" alt="LED Sign Board — from the Big 9 Signages catalogue" loading="lazy" decoding="async" width="640" height="440"><h3>LED Sign Board</h3><a class="bs-btn bs-btn--ghost" href="#quote">Request this signage</a></article><article><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj88wVJteWG3MaJCGHSmmx_MLa-OMY1pdmxcGWlgW5HcSguI6D2YEIXzJsHuBkOs_OkF0ea3BupKxdKJ7N5SxF6X7wa-aNRVzjto3-b2MnKVqjTDPjB-5NBzAZmB5SZuaXhWTeVT1L9BnhVijm2YRAtmJr4hqWpwlSOm2YDD3Wj0F6bH-Yf38_E-hD4fNg/s16000-rw/3-Big-9-signages-logo-retial-store-lobby-branding-signages.png" alt="3D Acrylic Letters — from the Big 9 Signages catalogue" loading="lazy" decoding="async" width="640" height="440"><h3>3D Acrylic Letters</h3><a class="bs-btn bs-btn--ghost" href="#quote">Request this signage</a></article></div></div></section>
+<section class="sc-section" id="signage-guides"><div class="sc-wrap"><p class="bs-plate__tag">Find your signage</p><h2 class="sc-display sc-display--md">Clear options. Confident decisions.</h2><p class="sc-body">Explore materials, installation considerations and quotation requirements for your next project in Hyderabad.</p><ul><li><a href="/services/led-sign-boards/">LED sign boards</a></li><li><a href="/services/acrylic-signs/">Acrylic signage</a></li><li><a href="/services/pylon-signs/">Pylon signage</a></li><li><a href="/services/wayfinding-signs/">Wayfinding</a></li><li><a href="/services/safety-signs/">Safety signage</a></li><li><a href="/services/vehicle-branding/">Vehicle branding</a></li></ul><p><a href="/blog/">Read our 24 signage guides</a> · <a href="/contact/">Contact Big 9 Signages</a></p></div></section>
+<section id="customer-gallery" class="sc-section"><div class="sc-wrap"><p class="bs-plate__tag">The Big 9 collection</p><h2 class="sc-display sc-display--md">Your space. Your signature.</h2><p class="sc-body">Explore images from our existing signage catalogue, then tell us what you have in mind.</p><div class="b9-gallery"><article><img src="/assets/customer/54dfac7a9c316362.webp" alt="LED Sign Board — from the Big 9 Signages catalogue" loading="lazy" decoding="async" width="640" height="440"><h3>LED Sign Board</h3><a class="bs-btn bs-btn--ghost" href="#quote">Request this signage</a></article><article><img src="/assets/customer/e7c5aa4c7b9bc0b8.webp" alt="3D Acrylic Letters — from the Big 9 Signages catalogue" loading="lazy" decoding="async" width="640" height="440"><h3>3D Acrylic Letters</h3><a class="bs-btn bs-btn--ghost" href="#quote">Request this signage</a></article></div></div></section>
 <section class="sc-section" id="faq" data-plate="10" data-plate-name="Questions" data-stage="Installation" style="padding-top:0">
   <div class="sc-wrap">
     <div class="bs-plate" data-sc-in data-sc-stagger="60">
       <p class="bs-plate__tag">Questions</p>
       <h2 class="sc-display sc-display--md">Before you ask.</h2>
     </div>
-    <div class="bs-faq" data-sc-in data-sc-stagger="50" id="faq-list"></div>
+    <div class="bs-faq" data-sc-in data-sc-stagger="50" id="faq-list"><details><summary>How do I request a signage quotation?</summary><p>Select the signage types, enter your city and approximate dimensions, and continue to WhatsApp. Review the prepared message and press Send. Final pricing depends on the agreed specification and site assessment.</p></details><details><summary>Which signage materials can I choose?</summary><p>Options include acrylic, aluminium, ACP, stainless steel and vinyl, depending on the sign type. Ask the team to recommend a material for your installation surface and exposure.</p></details><details><summary>What affects the cost of a signboard?</summary><p>Size, quantity, material, lighting, artwork, mounting height and installation access affect cost. Share photographs and measurements to start the discussion.</p></details><details><summary>Do you provide signage in Hyderabad?</summary><p>Big 9 Signages serves enquiries in Hyderabad and Telangana. Contact the team to confirm availability and site-visit arrangements for your location.</p></details><details><summary>Are all signs suitable for outdoor use?</summary><p>No. Outdoor suitability depends on the complete assembly, including materials, lighting, electrical protection and fixings. Confirm the outdoor specification and warranty in your quotation.</p></details><details><summary>Can I keep reading the existing signage guides?</summary><p>Yes. The Blog section retains the existing Big 9 Signages articles and their original publication dates.</p></details></div>
   </div>
 </section>
 
@@ -1311,7 +1331,10 @@ html{scroll-padding-top:100px} :focus-visible{outline:3px solid var(--sc-accent)
 </footer>
 </main>
 
-<nav class="bs-mobar" aria-label="Contact">
+<nav class="bs-mobar" aria-label="Mobile navigation">
+  <a href="/services/" aria-label="Explore signage and guides">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 4h18v5H3zM3 13h8v7H3zM15 13h6v7h-6z"/></svg>Explore
+  </a>
   <a data-call href="tel:+919381556456">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
     Call
@@ -1325,8 +1348,8 @@ html{scroll-padding-top:100px} :focus-visible{outline:3px solid var(--sc-accent)
 
 <!-- Both schemas below are populated from the BRAND / FAQS config so the
      structured data can never drift from the copy the visitor actually reads. -->
-<script type="application/ld+json" id="ld-business">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Big 9 Signages"}</script>
-<script type="application/ld+json" id="faq-schema">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[]}</script>
+<script type="application/ld+json" id="ld-business">{"@context": "https://schema.org", "@type": "LocalBusiness", "name": "Big 9 Signages", "url": "https://www.big9signages.com", "telephone": "+919381556456", "areaServed": ["Hyderabad", "Telangana"]}</script>
+<script type="application/ld+json" id="faq-schema">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I request a signage quotation?", "acceptedAnswer": {"@type": "Answer", "text": "Select the signage types, enter your city and approximate dimensions, and continue to WhatsApp. Review the prepared message and press Send. Final pricing depends on the agreed specification and site assessment."}}, {"@type": "Question", "name": "Which signage materials can I choose?", "acceptedAnswer": {"@type": "Answer", "text": "Options include acrylic, aluminium, ACP, stainless steel and vinyl, depending on the sign type. Ask the team to recommend a material for your installation surface and exposure."}}, {"@type": "Question", "name": "What affects the cost of a signboard?", "acceptedAnswer": {"@type": "Answer", "text": "Size, quantity, material, lighting, artwork, mounting height and installation access affect cost. Share photographs and measurements to start the discussion."}}, {"@type": "Question", "name": "Do you provide signage in Hyderabad?", "acceptedAnswer": {"@type": "Answer", "text": "Big 9 Signages serves enquiries in Hyderabad and Telangana. Contact the team to confirm availability and site-visit arrangements for your location."}}, {"@type": "Question", "name": "Are all signs suitable for outdoor use?", "acceptedAnswer": {"@type": "Answer", "text": "No. Outdoor suitability depends on the complete assembly, including materials, lighting, electrical protection and fixings. Confirm the outdoor specification and warranty in your quotation."}}, {"@type": "Question", "name": "Can I keep reading the existing signage guides?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The Blog section retains the existing Big 9 Signages articles and their original publication dates."}}]}</script>
 
 <script src="scrollcraft.js"></script>
 <script>
@@ -1341,8 +1364,8 @@ const BRAND = {
   phoneDial:       "919381556456",           // digits + country code, no +
   whatsapp:        "919381556456",
   email:           "",                       // REPLACE — left blank rather than invented
-  url:             "",                       // REPLACE — canonical/OG fall back to the served origin
-  cities:          [],                       // REPLACE e.g. ["Pune","Mumbai","Nashik"]
+  url:             "https://www.big9signages.com",                       // REPLACE — canonical/OG fall back to the served origin
+  cities:          ["Hyderabad", "Telangana"],                       // REPLACE e.g. ["Pune","Mumbai","Nashik"]
   foundedYear:     null,                     // REPLACE a real year, or null (then no claim is made)
   warranty:        null,                     // REPLACE the real warranty, or null (then nothing is claimed)
   /* Where the form should POST. Empty = the form composes a mailto: with the
@@ -1437,16 +1460,30 @@ const STUDIO = {
 };
 
 const FAQS = [
-  { q:"How long does an outdoor sign last?", a:"It depends entirely on where it is and what it is made of, which is why we ask about exposure before specifying anything. A shaded north-facing acrylic sign and a coastal ACP facade are different products with different service lives. Ask us for the material data sheet for the exact build you are getting, and we will tell you what it is rated for rather than quoting a number that applies to every project we have ever done." },
-  { q:"Is the signage waterproof?", a:"The face panels are. What matters is the joints and the fixings, so the build is designed as a drainable assembly: water enters at the base and leaves at the base, and no fixing is bonded into the substrate where it cannot be replaced." },
-  { q:"LED or neon, which should I choose?", a:"LED is brighter, cheaper to run, has no glass and lasts longer. Neon flex has a warmer, more continuous glow and is the right choice for hospitality and feature walls. For a name that has to be read from the road at night, LED front-lighting or halo-lighting is normally the more reliable answer." },
-  { q:"Do you handle permits and permissions?", a:"We check the requirement as part of the site visit and we will tell you early if signage on that frontage needs approval, because discovering it after fabrication is the expensive way to find out. Getting the paperwork moving is part of the job, not something we hand back to you." },
-  { q:"How long does installation take?", a:"A single fascia sign is usually a day or two on site once fabrication is finished. A large facade or a pylon is longer, and it depends on access, hours of working and whether scaffold or a lift is needed. You get a dated schedule before we start." },
-  { q:"Can you make a sign to a custom size?", a:"Yes. Almost everything we make is made to the measurement of that specific frontage rather than to a standard sheet size. Send the approximate dimensions and we will tell you what the closest manufacturable size is." },
-  { q:"What happens if something stops working?", a:"Tell us and we will come back. Because the build is designed for disassembly, a dead LED module or a failed driver can usually be swapped without taking the whole sign down. If you ask for a written warranty term at quotation stage we will give you one." },
-  { q:"Do you service signs you did not make?", a:"Often, yes. Send photographs and the location and we will tell you honestly whether it is something we can help with." },
-  { q:"Which cities do you work in?", a:"Speak to us about your location and we will tell you straight away whether we can reach it. We would rather say no than take a job we cannot service properly." },
-  { q:"How do I get a price?", a:"Send the enquiry form with as much or as little as you know: a photograph of the frontage and the rough size is enough to start a conversation. A firm quotation needs a measurement, so expect a site visit early in the process." }
+  {
+    "q": "How do I request a signage quotation?",
+    "a": "Select the signage types, enter your city and approximate dimensions, and continue to WhatsApp. Review the prepared message and press Send. Final pricing depends on the agreed specification and site assessment."
+  },
+  {
+    "q": "Which signage materials can I choose?",
+    "a": "Options include acrylic, aluminium, ACP, stainless steel and vinyl, depending on the sign type. Ask the team to recommend a material for your installation surface and exposure."
+  },
+  {
+    "q": "What affects the cost of a signboard?",
+    "a": "Size, quantity, material, lighting, artwork, mounting height and installation access affect cost. Share photographs and measurements to start the discussion."
+  },
+  {
+    "q": "Do you provide signage in Hyderabad?",
+    "a": "Big 9 Signages serves enquiries in Hyderabad and Telangana. Contact the team to confirm availability and site-visit arrangements for your location."
+  },
+  {
+    "q": "Are all signs suitable for outdoor use?",
+    "a": "No. Outdoor suitability depends on the complete assembly, including materials, lighting, electrical protection and fixings. Confirm the outdoor specification and warranty in your quotation."
+  },
+  {
+    "q": "Can I keep reading the existing signage guides?",
+    "a": "Yes. The Blog section retains the existing Big 9 Signages articles and their original publication dates."
+  }
 ];
 
 /* =========================================================================
@@ -2012,6 +2049,7 @@ form.addEventListener("submit", e => {
     const url = `https://wa.me/${BRAND.whatsapp}?text=${body}`;
     const link = document.querySelector("#whatsapp-resume");
     link.href = url; link.hidden = false;
+    window.dispatchEvent(new CustomEvent("big9:analytics", {detail:{event:"whatsapp_handoff_prepared"}}));
     window.location.href = url;
   }
 
@@ -2113,6 +2151,9 @@ if (mat){
 
 renderBOM();
 </script>
-<script>ScrollCraft.mount(document.body);</script>
+<script>
+if (matchMedia("(max-width: 860px)").matches) document.querySelector("#hero").setAttribute("data-sc-span", "2.6");
+ScrollCraft.mount(document.body);
+</script>
 </body>
 </html>
