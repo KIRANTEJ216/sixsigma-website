@@ -257,9 +257,9 @@
    The drawn SVG above stays underneath as a real fallback: the photo layer is
    only promoted once every image has actually decoded, so a failed or blocked
    image leaves the illustration standing rather than an empty box. */
-.bs-photo{position:absolute;inset:0;overflow:hidden;opacity:0;background:var(--sc-canvas)}
+.bs-photo{position:absolute;inset:0;overflow:hidden;opacity:0}
 .bs-photo__layer{position:absolute;inset:0;margin:0;overflow:hidden}
-.bs-photo__layer img{width:100%;height:100%;object-fit:contain;object-position:center;display:block}
+.bs-photo__layer img{width:100%;height:100%;object-fit:contain;object-position:center;display:block;background:#101720}
 /* the "after" state is revealed by a feathered diagonal mask driven from JS */
 .bs-photo__layer--after{
   -webkit-mask-image:linear-gradient(102deg,#000 var(--bs-wipe),rgba(0,0,0,0) calc(var(--bs-wipe) + 9%));
@@ -275,7 +275,7 @@
 }
 .bs-photo__vignette{
   position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(to right,var(--sc-canvas),transparent 15%,transparent 88%,var(--sc-canvas)),linear-gradient(to bottom,var(--sc-canvas),transparent 18%,transparent 78%,var(--sc-canvas));
+  background:radial-gradient(120% 88% at 50% 42%,transparent 46%,rgba(4,6,10,.62) 100%);
 }
 .bs-photo__grain{
   position:absolute;inset:-2%;pointer-events:none;opacity:.5;mix-blend-mode:overlay;
@@ -289,7 +289,7 @@
    would shadow the value JS writes to #hero and freeze the mask. */
 #hero{--bs-wipe:-9%}
 
-/* Both hero states share identical framing to keep the sign fixed to the facade. */
+/* Identical framing keeps the signage attached to the building during the reveal. */
 @media (max-width:900px){
   /* Narrow, the plate cannot fill the stage, so it is resolved into the page
      instead of ending on a hard line. That also guarantees the copy always has a
@@ -435,7 +435,7 @@
 .bs-mat__proof-cap{
   position:absolute;left:0;right:0;bottom:0;margin:0;
   padding:.85rem var(--sc-4);font-family:var(--sc-font-mono);font-size:.72rem;
-  letter-spacing:.06em;text-transform:uppercase;color:#F5F7FA;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--sc-ink-soft);
   background:linear-gradient(to top,rgba(6,8,11,.94),transparent);
 }
 .bs-mat__copy{
@@ -445,8 +445,7 @@
 .bs-mat__copy > *{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding-top:3rem}
 @media (max-width:1000px){
   .bs-mat__draw{width:100%;height:44%;opacity:.5}
-  .bs-mat__proof{inset:5rem var(--sc-gutter) auto;width:calc(100% - 2 * var(--sc-gutter));height:30%;border-radius:var(--sc-r-md)}
-  .bs-mat__copy{position:absolute;inset:auto 0 0;width:100%;height:60%;padding:0}
+  .bs-mat__copy{position:relative;top:auto;bottom:auto;left:auto;width:100%;padding:0 var(--sc-gutter) 4rem}
   .bs-mat__copy > *{position:absolute;inset:0 0 0 0;justify-content:flex-end;padding:0 var(--sc-gutter) 3rem}
   .bs-mat__copy::before{content:"";position:absolute;inset:0;background:linear-gradient(to top,var(--sc-canvas) 42%,color-mix(in oklab,var(--sc-canvas) 82%,transparent) 72%,transparent)}
 }
@@ -594,6 +593,15 @@ html{scroll-padding-top:100px} :focus-visible{outline:3px solid var(--sc-accent)
 .b9-types legend{font-weight:600;padding:0 8px}.b9-types p{grid-column:1/-1;font-size:14px}.b9-types label{display:flex;align-items:center;gap:9px;font-size:13px;text-transform:none;letter-spacing:0}.b9-types input{width:18px!important;height:18px;accent-color:#bd780c;flex:none}
 @media(max-width:650px){.b9-gallery{grid-template-columns:1fr}.b9-gallery img{height:260px}.b9-types{grid-template-columns:1fr}}
 
+.b9-optional{border:1px solid var(--sc-hairline);border-radius:12px;padding:.8rem 1rem}
+.b9-optional summary{cursor:pointer;font-weight:600;min-height:44px;display:flex;align-items:center}
+.b9-optional summary::after{content:"+";margin-left:auto;color:var(--sc-accent-text)}
+.b9-optional[open] summary::after{content:"−"}
+.b9-optional > div{margin-top:1rem}
+.b9-types{margin-top:1rem;margin-bottom:1rem;padding:1rem}
+.b9-types label{min-height:44px;margin:0}
+.b9-types input{min-height:20px}
+.bs-form__err:empty{display:none}
 </style>
 </head>
 <body>
@@ -1053,22 +1061,22 @@ html{scroll-padding-top:100px} :focus-visible{outline:3px solid var(--sc-accent)
       <figure class="bs-mat__proof">
         <img class="bs-mat__proof-img is-on" src="assets/photo/mat-letter.webp" width="1100" height="1457" alt="Macro photograph of a halo-lit acrylic channel letter: brushed aluminium returns, translucent acrylic face, warm LED halo spilling onto the dark aluminium composite panel behind." loading="lazy" decoding="async">
         <img class="bs-mat__proof-img" src="assets/photo/mat-acp.webp" width="1100" height="1467" alt="Macro photograph of a fabrication detail: the cut edge of a dark aluminium composite panel showing its layered core, with a recessed LED channel of warm white modules tucked behind the panel edge." loading="lazy" decoding="async">
-        <figcaption class="bs-mat__proof-cap" data-mat-cap>Illustration: acrylic letter with halo lighting</figcaption>
+        <figcaption class="bs-mat__proof-cap" data-mat-cap>Acrylic face, aluminium return, halo-lit</figcaption>
       </figure>
 
       <div class="bs-mat__copy">
         <div data-sc-cue="0 0.40 0 0.08">
           <p class="bs-plate__tag">Material laboratory</p>
-          <h2 class="sc-display sc-display--md">What makes a sign look good and last?</h2>
-          <p class="sc-body">A sign is more than its visible face. The materials, lighting and fixings work together to keep your brand clear, secure and easy to maintain.</p>
+          <h2 class="sc-display sc-display--md">Every sign is a stack of layers, and the layers are the difference.</h2>
+          <p class="sc-body">Most signage fails at a joint. Water gets behind a panel, a bracket corrodes, an LED module dies and there is no way to reach it. We build for disassembly: a layer can be replaced without taking the whole sign down.</p>
         </div>
         <div data-sc-cue="0.34 0.70 0.22 0.08">
-          <h3 class="sc-display sc-display--md">The right material for each layer.</h3>
-          <p class="sc-body">Acrylic gives letters a clean finish and can diffuse light. ACP and aluminium provide structure and a neat backdrop. LED lighting helps your sign stand out after dark; suitable fixings keep it secure.</p>
+          <h3 class="sc-display sc-display--md">Sealed, drained, and reachable.</h3>
+          <p class="sc-body">Acrylic and PVC faces are UV-stable and weather-rated. Aluminium and ACP frames are powder-coated and drain at the base, not through the face. LED modules sit on a replaceable rail with a driver you can swap by hand. Every fixing is mechanical, never chemical-bonded into the substrate.</p>
         </div>
         <div data-sc-cue="0.64 0.94 0.18 0.06">
-          <h3 class="sc-display sc-display--md">Designed for your location.</h3>
-          <p class="sc-body">Outdoor exposure, access for maintenance and your budget all shape the design. Ask us to explain the materials, lighting and mounting options in your quotation before fabrication begins.</p>
+          <h3 class="sc-display sc-display--md">Ask for the cutaway.</h3>
+          <p class="sc-body">On a site visit we will show you a section sample of the exact build you are getting, so you are approving a physical thing rather than a promise. Specification sheets are provided before anything is ordered.</p>
         </div>
       </div>
     </div>
@@ -1195,13 +1203,13 @@ html{scroll-padding-top:100px} :focus-visible{outline:3px solid var(--sc-accent)
         <h2 class="sc-display sc-display--md">Let us build the sign your building deserves.</h2>
         <p class="sc-body">Send the basics and we will come back with questions, a site visit slot and a written quotation. No obligation, and we will tell you if your budget will not get you what you have in mind.</p>
 
-        <div class="bs-preview" style="margin-top:var(--sc-7);background:transparent;border-style:dashed">
+        <details class="bs-preview" style="margin-top:var(--sc-5);background:transparent;border-style:dashed"><summary style="padding:1rem;cursor:pointer">View site specification</summary>
           <div class="bs-preview__head" style="border-bottom-style:dashed">
             <span>Your specification so far</span>
             <span data-bom-count>0 items</span>
           </div>
           <ol class="bs-bom__list" data-bom-list data-bom-static style="padding:var(--sc-4);max-height:none;overflow:visible"></ol>
-        </div>
+        </details>
 
         <p style="margin-top:var(--sc-6)">
           <a class="bs-btn bs-btn--ghost" data-call href="tel:+919381556456">Call <span data-phone-display>+91 9381 556 456</span></a>
@@ -1212,70 +1220,20 @@ html{scroll-padding-top:100px} :focus-visible{outline:3px solid var(--sc-accent)
       <form class="bs-form" data-sc-in data-sc-stagger="50" data-quote novalidate>
         <div class="bs-form__fields sc-stack">
           <div class="bs-form__row">
-            <div>
-              <label for="f-name">Name <span class="bs-form__req" aria-hidden="true">*</span></label>
-              <input id="f-name" name="name" type="text" required autocomplete="name" aria-describedby="e-name">
-              <span class="bs-form__err" id="e-name" role="alert"></span>
-            </div>
-            <div>
-              <label for="f-company">Company</label>
-              <input id="f-company" name="company" type="text" autocomplete="organization" aria-describedby="e-company">
-              <span class="bs-form__err" id="e-company" role="alert"></span>
-            </div>
+            <div><label for="f-name">Your name <span class="bs-form__req" aria-hidden="true">*</span></label><input id="f-name" name="name" type="text" required autocomplete="name" aria-describedby="e-name"><span class="bs-form__err" id="e-name" role="alert"></span></div>
+            <div><label for="f-phone">Phone number <span class="bs-form__req" aria-hidden="true">*</span></label><input id="f-phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" aria-describedby="e-phone"><span class="bs-form__err" id="e-phone" role="alert"></span></div>
           </div>
-
-          <div class="bs-form__row">
-            <div>
-              <label for="f-phone">Phone <span class="bs-form__req" aria-hidden="true">*</span></label>
-              <input id="f-phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" aria-describedby="e-phone">
-              <span class="bs-form__err" id="e-phone" role="alert"></span>
-            </div>
-            <div>
-              <label for="f-email">Email (optional)</label>
-              <input id="f-email" name="email" type="email" autocomplete="email" aria-describedby="e-email">
-              <span class="bs-form__err" id="e-email" role="alert"></span>
-            </div>
-          </div>
-
-          <div class="bs-form__row">
-            <div>
-              <label for="f-city">City <span class="bs-form__req" aria-hidden="true">*</span></label>
-              <input id="f-city" name="city" type="text" required autocomplete="address-level2" aria-describedby="e-city">
-              <span class="bs-form__err" id="e-city" role="alert"></span>
-            </div>
-            <div>
-              <label for="f-type">Business type</label>
-              <select id="f-type" name="businessType" aria-describedby="e-type">
-                <option value="">Select one</option>
-                <option>Retail</option><option>Restaurant or café</option><option>Corporate office</option>
-                <option>Hospital or clinic</option><option>School or institution</option><option>Gym</option>
-                <option>Real estate developer</option><option>Automobile workshop</option>
-                <option>Hotel or hospitality</option><option>Industrial</option><option>Other</option>
-              </select>
-              <span class="bs-form__err" id="e-type" role="alert"></span>
-            </div>
-          </div>
-
-          <div>
-            <fieldset class="b9-types"><legend>Select your signage requirements</legend><p>Choose one or more. We can help you decide on WhatsApp.</p><label><input type="checkbox" name="signageTypes" value="Storefront signs"> Storefront signs</label><label><input type="checkbox" name="signageTypes" value="LED sign boards"> LED sign boards</label><label><input type="checkbox" name="signageTypes" value="3D channel letters"> 3D channel letters</label><label><input type="checkbox" name="signageTypes" value="Acrylic signs"> Acrylic signs</label><label><input type="checkbox" name="signageTypes" value="Glass signs"> Glass signs</label><label><input type="checkbox" name="signageTypes" value="Neon signs"> Neon signs</label><label><input type="checkbox" name="signageTypes" value="ACP facade signs"> ACP facade signs</label><label><input type="checkbox" name="signageTypes" value="Pylon signs"> Pylon signs</label><label><input type="checkbox" name="signageTypes" value="Monument signs"> Monument signs</label><label><input type="checkbox" name="signageTypes" value="Multi-tenant directory"> Multi-tenant directory</label><label><input type="checkbox" name="signageTypes" value="Wayfinding signs"> Wayfinding signs</label><label><input type="checkbox" name="signageTypes" value="Safety signs"> Safety signs</label><label><input type="checkbox" name="signageTypes" value="Industrial signs"> Industrial signs</label><label><input type="checkbox" name="signageTypes" value="Digital signs"> Digital signs</label><label><input type="checkbox" name="signageTypes" value="Hoardings"> Hoardings</label><label><input type="checkbox" name="signageTypes" value="Vehicle branding"> Vehicle branding</label><label><input type="checkbox" name="signageTypes" value="Promotional signs"> Promotional signs</label><label><input type="checkbox" name="signageTypes" value="Standees"> Standees</label><label><input type="checkbox" name="signageTypes" value="Barricades"> Barricades</label><label><input type="checkbox" name="signageTypes" value="Engraving"> Engraving</label><label><input type="checkbox" name="signageTypes" value="QR code signs"> QR code signs</label><label><input type="checkbox" name="signageTypes" value="Other / please advise"> Other / please advise</label></fieldset><label for="f-req">Additional signage details</label>
-            <textarea id="f-req" name="requirement" rows="3" data-bom-mirror
-              placeholder="Filled in from your specification above"></textarea>
-            <span class="bs-form__err" id="e-req" role="alert"></span>
-          </div>
-
-          <div>
-            <label for="f-dims">Approximate dimensions</label>
-            <input id="f-dims" name="dimensions" type="text" data-bom-mirror-dims
-              placeholder="Filled in from your specification above">
-          </div>
-
-          <div>
-            <label for="f-msg">Message</label>
-            <textarea id="f-msg" name="message" rows="3" placeholder="Anything else we should know: access, timings, permissions, deadline."></textarea>
-          </div>
-
+          <div><label for="f-city">City <span class="bs-form__req" aria-hidden="true">*</span></label><input id="f-city" name="city" type="text" required autocomplete="address-level2" aria-describedby="e-city"><span class="bs-form__err" id="e-city" role="alert"></span></div>
+          <div><label for="f-msg">What kind of sign do you need? (optional)</label><textarea id="f-msg" name="message" rows="2" placeholder="For example: an illuminated shop sign, approximately 10 feet wide."></textarea></div>
+          <details class="b9-optional"><summary>Add signage types and more details (optional)</summary>
+            <fieldset class="b9-types"><legend>Select your signage requirements</legend><p>Choose one or more. We can help you decide on WhatsApp.</p><label><input type="checkbox" name="signageTypes" value="Storefront signs"> Storefront signs</label><label><input type="checkbox" name="signageTypes" value="LED sign boards"> LED sign boards</label><label><input type="checkbox" name="signageTypes" value="3D channel letters"> 3D channel letters</label><label><input type="checkbox" name="signageTypes" value="Acrylic signs"> Acrylic signs</label><label><input type="checkbox" name="signageTypes" value="Glass signs"> Glass signs</label><label><input type="checkbox" name="signageTypes" value="Neon signs"> Neon signs</label><label><input type="checkbox" name="signageTypes" value="ACP facade signs"> ACP facade signs</label><label><input type="checkbox" name="signageTypes" value="Pylon signs"> Pylon signs</label><label><input type="checkbox" name="signageTypes" value="Monument signs"> Monument signs</label><label><input type="checkbox" name="signageTypes" value="Multi-tenant directory"> Multi-tenant directory</label><label><input type="checkbox" name="signageTypes" value="Wayfinding signs"> Wayfinding signs</label><label><input type="checkbox" name="signageTypes" value="Safety signs"> Safety signs</label><label><input type="checkbox" name="signageTypes" value="Industrial signs"> Industrial signs</label><label><input type="checkbox" name="signageTypes" value="Digital signs"> Digital signs</label><label><input type="checkbox" name="signageTypes" value="Hoardings"> Hoardings</label><label><input type="checkbox" name="signageTypes" value="Vehicle branding"> Vehicle branding</label><label><input type="checkbox" name="signageTypes" value="Promotional signs"> Promotional signs</label><label><input type="checkbox" name="signageTypes" value="Standees"> Standees</label><label><input type="checkbox" name="signageTypes" value="Barricades"> Barricades</label><label><input type="checkbox" name="signageTypes" value="Engraving"> Engraving</label><label><input type="checkbox" name="signageTypes" value="QR code signs"> QR code signs</label><label><input type="checkbox" name="signageTypes" value="Other / please advise"> Other / please advise</label></fieldset>
+            <div class="bs-form__row"><div><label for="f-company">Company</label><input id="f-company" name="company" autocomplete="organization"></div><div><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" aria-describedby="e-email"><span class="bs-form__err" id="e-email" role="alert"></span></div></div>
+            <div><label for="f-type">Business type</label><select id="f-type" name="businessType"><option value="">Select one</option><option>Retail</option><option>Restaurant or café</option><option>Corporate office</option><option>Hospital or clinic</option><option>School or institution</option><option>Gym</option><option>Real estate developer</option><option>Automobile workshop</option><option>Hotel or hospitality</option><option>Industrial</option><option>Other</option></select></div>
+            <div><label for="f-dims">Approximate dimensions</label><input id="f-dims" name="dimensions" placeholder="For example: 10 ft wide"></div>
+            <div><label for="f-req">Additional details</label><textarea id="f-req" name="requirement" rows="2" placeholder="Materials, lighting or installation details"></textarea></div>
+          </details>
           <button class="bs-btn bs-btn--primary bs-btn--lg" type="submit">Continue on WhatsApp</button>
-          <p class="bs-form__note">Continuing opens WhatsApp with your details and selected requirements. Review and send the message to Big 9 Signages. Final pricing follows a site assessment.</p>
+          <p class="bs-form__note">WhatsApp will open with your enquiry. Please review and press Send to contact us.</p>
         </div>
 
         <div class="bs-form__done" role="status">
@@ -1568,21 +1526,7 @@ function renderBOM(){
 const studioState = { type:"Front-lit letters", light:"Halo-lit", material:"Aluminium", size:"6 m", dimsChanged:false };
 
 /* the specification the visitor built, handed to the form */
-function mirrorToForm(){
-  const req  = $("#f-req"), dims = $("#f-dims");
-  if (!req || !dims) return;
-  const ordered = bomStore.slice().sort((a,b) => (a.__slot?1:0) - (b.__slot?1:0));
-  if (ordered.length){
-    req.value = ordered.map(b => `${b.label} (${b.spec})`).join("\n");
-    req.placeholder = "";
-  }
-  const chosen = studioState.size;
-  if (chosen){
-    const face = studioState.material;
-    dims.value = `${chosen} wide ${(studioState.type||"sign").toLowerCase()}` + (face ? `, ${face.toLowerCase()} face` : "");
-    dims.placeholder = "";
-  }
-}
+function mirrorToForm(){ /* The quote form is filled by the customer. */ }
 
 function addBom(label, spec){
   if (bomStore.some(b => b.label === label)) return;
@@ -1669,8 +1613,8 @@ function readHero(){
   const shots = $$(".bs-mat__proof-img", proof);
   const cap = $("[data-mat-cap]", proof);
   const CAPS = [
-    "Illustration: acrylic letter with halo lighting",
-    "Illustration: panel edge and LED lighting",
+    "Acrylic face, aluminium return, halo-lit",
+    "ACP edge, layered core, LED channel",
   ];
   let shown = -1;
   function apply(p){
@@ -1982,6 +1926,8 @@ form.addEventListener("submit", e => {
     el.setAttribute("aria-invalid", String(bad));
     if (bad){ ok = false; if (!first) first = el; }
   });
+  const email = $("#f-email");
+  if (email.value.trim() && !email.validity.valid) { $("#e-email").textContent = "Please enter a valid email address."; email.setAttribute("aria-invalid", "true"); email.closest("details").open = true; ok = false; if (!first) first = email; }
   if (!ok){ first.focus(); return; }
 
   const fd = new FormData(form);
@@ -1994,9 +1940,6 @@ form.addEventListener("submit", e => {
     `Signage types: ${fd.getAll("signageTypes").join(", ") || "Please advise"}`,
     `City: ${fd.get("city")}`,
     `Business type: ${fd.get("businessType") || "-"}`,
-    "",
-    "SPECIFICATION BUILT ON SITE",
-    ...bomStore.map(b => `- ${b.label} (${b.spec})`),
     "",
     fd.get("requirement") ? `Details:\n${fd.get("requirement")}` : "",
     fd.get("message") ? `Message:\n${fd.get("message")}` : ""
