@@ -257,9 +257,9 @@
    The drawn SVG above stays underneath as a real fallback: the photo layer is
    only promoted once every image has actually decoded, so a failed or blocked
    image leaves the illustration standing rather than an empty box. */
-.bs-photo{position:absolute;inset:0;overflow:hidden;opacity:0}
+.bs-photo{position:absolute;inset:0;overflow:hidden;opacity:0;background:var(--sc-canvas)}
 .bs-photo__layer{position:absolute;inset:0;margin:0;overflow:hidden}
-.bs-photo__layer img{width:100%;height:100%;object-fit:contain;object-position:center;display:block;background:#101720}
+.bs-photo__layer img{width:100%;height:100%;object-fit:contain;object-position:center;display:block}
 /* the "after" state is revealed by a feathered diagonal mask driven from JS */
 .bs-photo__layer--after{
   -webkit-mask-image:linear-gradient(102deg,#000 var(--bs-wipe),rgba(0,0,0,0) calc(var(--bs-wipe) + 9%));
@@ -275,7 +275,7 @@
 }
 .bs-photo__vignette{
   position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(120% 88% at 50% 42%,transparent 46%,rgba(4,6,10,.62) 100%);
+  background:linear-gradient(to right,var(--sc-canvas),transparent 15%,transparent 88%,var(--sc-canvas)),linear-gradient(to bottom,var(--sc-canvas),transparent 18%,transparent 78%,var(--sc-canvas));
 }
 .bs-photo__grain{
   position:absolute;inset:-2%;pointer-events:none;opacity:.5;mix-blend-mode:overlay;
@@ -435,7 +435,7 @@
 .bs-mat__proof-cap{
   position:absolute;left:0;right:0;bottom:0;margin:0;
   padding:.85rem var(--sc-4);font-family:var(--sc-font-mono);font-size:.72rem;
-  letter-spacing:.06em;text-transform:uppercase;color:var(--sc-ink-soft);
+  letter-spacing:.06em;text-transform:uppercase;color:#F5F7FA;
   background:linear-gradient(to top,rgba(6,8,11,.94),transparent);
 }
 .bs-mat__copy{
@@ -445,7 +445,8 @@
 .bs-mat__copy > *{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding-top:3rem}
 @media (max-width:1000px){
   .bs-mat__draw{width:100%;height:44%;opacity:.5}
-  .bs-mat__copy{position:relative;top:auto;bottom:auto;left:auto;width:100%;padding:0 var(--sc-gutter) 4rem}
+  .bs-mat__proof{inset:5rem var(--sc-gutter) auto;width:calc(100% - 2 * var(--sc-gutter));height:30%;border-radius:var(--sc-r-md)}
+  .bs-mat__copy{position:absolute;inset:auto 0 0;width:100%;height:60%;padding:0}
   .bs-mat__copy > *{position:absolute;inset:0 0 0 0;justify-content:flex-end;padding:0 var(--sc-gutter) 3rem}
   .bs-mat__copy::before{content:"";position:absolute;inset:0;background:linear-gradient(to top,var(--sc-canvas) 42%,color-mix(in oklab,var(--sc-canvas) 82%,transparent) 72%,transparent)}
 }
@@ -1052,22 +1053,22 @@ html{scroll-padding-top:100px} :focus-visible{outline:3px solid var(--sc-accent)
       <figure class="bs-mat__proof">
         <img class="bs-mat__proof-img is-on" src="assets/photo/mat-letter.webp" width="1100" height="1457" alt="Macro photograph of a halo-lit acrylic channel letter: brushed aluminium returns, translucent acrylic face, warm LED halo spilling onto the dark aluminium composite panel behind." loading="lazy" decoding="async">
         <img class="bs-mat__proof-img" src="assets/photo/mat-acp.webp" width="1100" height="1467" alt="Macro photograph of a fabrication detail: the cut edge of a dark aluminium composite panel showing its layered core, with a recessed LED channel of warm white modules tucked behind the panel edge." loading="lazy" decoding="async">
-        <figcaption class="bs-mat__proof-cap" data-mat-cap>Acrylic face, aluminium return, halo-lit</figcaption>
+        <figcaption class="bs-mat__proof-cap" data-mat-cap>Illustration: acrylic letter with halo lighting</figcaption>
       </figure>
 
       <div class="bs-mat__copy">
         <div data-sc-cue="0 0.40 0 0.08">
           <p class="bs-plate__tag">Material laboratory</p>
-          <h2 class="sc-display sc-display--md">Every sign is a stack of layers, and the layers are the difference.</h2>
-          <p class="sc-body">Most signage fails at a joint. Water gets behind a panel, a bracket corrodes, an LED module dies and there is no way to reach it. We build for disassembly: a layer can be replaced without taking the whole sign down.</p>
+          <h2 class="sc-display sc-display--md">What makes a sign look good and last?</h2>
+          <p class="sc-body">A sign is more than its visible face. The materials, lighting and fixings work together to keep your brand clear, secure and easy to maintain.</p>
         </div>
         <div data-sc-cue="0.34 0.70 0.22 0.08">
-          <h3 class="sc-display sc-display--md">Sealed, drained, and reachable.</h3>
-          <p class="sc-body">Acrylic and PVC faces are UV-stable and weather-rated. Aluminium and ACP frames are powder-coated and drain at the base, not through the face. LED modules sit on a replaceable rail with a driver you can swap by hand. Every fixing is mechanical, never chemical-bonded into the substrate.</p>
+          <h3 class="sc-display sc-display--md">The right material for each layer.</h3>
+          <p class="sc-body">Acrylic gives letters a clean finish and can diffuse light. ACP and aluminium provide structure and a neat backdrop. LED lighting helps your sign stand out after dark; suitable fixings keep it secure.</p>
         </div>
         <div data-sc-cue="0.64 0.94 0.18 0.06">
-          <h3 class="sc-display sc-display--md">Ask for the cutaway.</h3>
-          <p class="sc-body">On a site visit we will show you a section sample of the exact build you are getting, so you are approving a physical thing rather than a promise. Specification sheets are provided before anything is ordered.</p>
+          <h3 class="sc-display sc-display--md">Designed for your location.</h3>
+          <p class="sc-body">Outdoor exposure, access for maintenance and your budget all shape the design. Ask us to explain the materials, lighting and mounting options in your quotation before fabrication begins.</p>
         </div>
       </div>
     </div>
@@ -1668,8 +1669,8 @@ function readHero(){
   const shots = $$(".bs-mat__proof-img", proof);
   const cap = $("[data-mat-cap]", proof);
   const CAPS = [
-    "Acrylic face, aluminium return, halo-lit",
-    "ACP edge, layered core, LED channel",
+    "Illustration: acrylic letter with halo lighting",
+    "Illustration: panel edge and LED lighting",
   ];
   let shown = -1;
   function apply(p){
