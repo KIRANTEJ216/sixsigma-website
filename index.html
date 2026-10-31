@@ -259,7 +259,7 @@
    image leaves the illustration standing rather than an empty box. */
 .bs-photo{position:absolute;inset:0;overflow:hidden;opacity:0}
 .bs-photo__layer{position:absolute;inset:0;margin:0;overflow:hidden}
-.bs-photo__layer img{width:100%;height:100%;object-fit:cover;display:block}
+.bs-photo__layer img{width:100%;height:100%;object-fit:contain;object-position:center;display:block;background:#101720}
 /* the "after" state is revealed by a feathered diagonal mask driven from JS */
 .bs-photo__layer--after{
   -webkit-mask-image:linear-gradient(102deg,#000 var(--bs-wipe),rgba(0,0,0,0) calc(var(--bs-wipe) + 9%));
@@ -289,12 +289,7 @@
    would shadow the value JS writes to #hero and freeze the mask. */
 #hero{--bs-wipe:-9%}
 
-@media (prefers-reduced-motion:no-preference){
-  /* two parallax rates only: the bare facade drifts slower than the lit one,
-     which reads as depth rather than as a slide */
-  .bs-photo__layer--before img{transform:scale(1.10) translate3d(0,calc((var(--bs-hp) - .5) * -2.2vh),0)}
-  .bs-photo__layer--after  img{transform:scale(1.14) translate3d(0,calc((var(--bs-hp) - .5) * -5.0vh),0)}
-}
+/* Identical framing keeps the signage attached to the building during the reveal. */
 @media (max-width:900px){
   /* Narrow, the plate cannot fill the stage, so it is resolved into the page
      instead of ending on a hard line. That also guarantees the copy always has a
@@ -598,9 +593,84 @@ html{scroll-padding-top:100px} :focus-visible{outline:3px solid var(--sc-accent)
 .b9-types legend{font-weight:600;padding:0 8px}.b9-types p{grid-column:1/-1;font-size:14px}.b9-types label{display:flex;align-items:center;gap:9px;font-size:13px;text-transform:none;letter-spacing:0}.b9-types input{width:18px!important;height:18px;accent-color:#bd780c;flex:none}
 @media(max-width:650px){.b9-gallery{grid-template-columns:1fr}.b9-gallery img{height:260px}.b9-types{grid-template-columns:1fr}}
 
+.b9-optional{border:1px solid var(--sc-hairline);border-radius:12px;padding:.8rem 1rem}
+.b9-optional summary{cursor:pointer;font-weight:600;min-height:44px;display:flex;align-items:center}
+.b9-optional summary::after{content:"+";margin-left:auto;color:var(--sc-accent-text)}
+.b9-optional[open] summary::after{content:"−"}
+.b9-optional > div{margin-top:1rem}
+.b9-types{margin-top:1rem;margin-bottom:1rem;padding:1rem}
+.b9-types label{min-height:44px;margin:0}
+.b9-types input{min-height:20px}
+.bs-form__err:empty{display:none}
+
+/* Presentation refinements: keep the architecture in a landscape frame. */
+html{scroll-padding-top:6rem}
+.bs-in-hero .bs-margin{opacity:0;pointer-events:none}
+.bs-top{z-index:calc(var(--sc-z-chrome) + 2)}
+:focus-visible{outline:2px solid var(--sc-accent-text);outline-offset:4px}
+.bs-top{background:color-mix(in oklab,var(--sc-canvas) 94%,transparent)}
+.bs-top::before{display:none}
+.bs-nav a{display:inline-flex;align-items:center;min-height:44px}
+.bs-hero{grid-template-columns:42% 58%;gap:0}
+.bs-hero__copy > *{inset-inline:var(--sc-gutter) 1.5rem}
+.bs-hero__h1{font-size:clamp(2.5rem,3.6vw,4.5rem);line-height:1.04;max-width:12ch;letter-spacing:-.045em}
+.bs-hero__sub{line-height:1.65;max-width:32ch}
+.bs-hero__line{font-size:clamp(1.8rem,2.7vw,3.3rem);max-width:16ch}
+.bs-hero__cta{gap:.65rem}
+.bs-hero__cta .bs-btn{font-size:.9rem;padding:.85rem 1.15rem}
+.bs-draw{inset:50% var(--sc-gutter) auto auto;width:55%;height:auto;aspect-ratio:2;transform:translateY(-50%)}
+.bs-photo{border-radius:16px;border:1px solid var(--sc-hairline);box-shadow:0 24px 70px rgb(0 0 0 / .16)}
+.bs-photo__layer img{background:transparent}
+.bs-photo__grain{opacity:.15}
+.bs-photo__vignette{background:linear-gradient(0deg,rgba(4,6,10,.24),transparent 35%)}
+.bs-scene-caption{position:absolute;top:calc(100% + 1rem);left:0;right:0;display:flex;justify-content:space-between;gap:1rem;font-family:var(--sc-font-mono);font-size:.7rem;letter-spacing:.06em;color:var(--sc-ink-soft)}
+.bs-scene-caption b{font-weight:500;color:var(--sc-accent-text)}
+.bs-eyebrow{font-family:var(--sc-font-mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.14em;color:var(--sc-accent-text);margin:0 0 1.2rem}
+.bs-scroll-hint{position:absolute;bottom:2rem;left:var(--sc-gutter);font-size:.8rem;color:var(--sc-ink-soft);text-decoration:none}
+.bs-scroll-hint span{display:inline-block;margin-right:.6rem;color:var(--sc-accent-text)}
+.bs-form{padding:clamp(1.2rem,3vw,2rem);border:1px solid var(--sc-hairline);border-radius:18px;background:var(--sc-surface);box-shadow:0 12px 40px rgb(0 0 0 / .035)}
+.bs-formwrap h2{font-size:clamp(2rem,3vw,3rem);line-height:1.12}
+.bs-form label{font-family:var(--sc-font-text);font-size:.875rem;letter-spacing:0;text-transform:none;color:var(--sc-ink)}
+.bs-form input,.bs-form select,.bs-form textarea{background:var(--sc-canvas);font-size:1rem}
+.bs-form textarea{min-height:5.5rem}
+.bs-form__err{color:#AE2920}
+:root[data-theme="dark"] .bs-form__err{color:#FFAAA0}
+.bs-form__req{color:var(--sc-accent-text)}
+.b9-gallery article,.b9-types{border-color:var(--sc-hairline)}
+.b9-gallery article{padding:clamp(1rem,2vw,1.5rem)}
+.b9-gallery img{aspect-ratio:16/11;height:auto}
+.bs-contact-options{display:flex;flex-wrap:wrap;gap:.65rem;margin-top:var(--sc-6)}
+.bs-contact-options .bs-btn{margin:0!important}
+@media(max-width:1180px){:root{--bs-rail:0px}}
+@media(max-width:1000px){.bs-theme{margin-left:auto}}
+@media(max-width:900px){
+ .bs-hero{display:block;padding:0}
+ .bs-hero::after{display:none}
+ .bs-draw{top:6.25rem;right:var(--sc-gutter);width:calc(100% - 2 * var(--sc-gutter));height:auto;max-height:32svh;transform:none}
+ .bs-hero__copy{inset:calc(6.25rem + min(32svh, (100vw - 2 * var(--sc-gutter)) / 2) + 3rem) 0 5.5rem;height:auto;justify-content:center}
+ .bs-hero__copy > *{top:0;bottom:auto;translate:none;inset-inline:var(--sc-gutter)}
+ .bs-hero__h1{font-size:clamp(2rem,6.5vw,3rem);max-width:19ch}
+ .bs-hero__sub{margin-top:1rem;font-size:1rem;max-width:44ch}
+ .bs-hero__cta{margin-top:1.25rem}
+ .bs-eyebrow{margin-bottom:.7rem;font-size:.65rem}
+ .bs-scene-caption{font-size:.6rem;top:calc(100% + .6rem)}
+ .bs-scroll-hint{bottom:4.6rem;font-size:.7rem}
+ .bs-chip{display:none}
+ .bs-sheet-mobile{bottom:calc(56px + env(safe-area-inset-bottom) + 1rem)}
+ body{padding-bottom:calc(56px + env(safe-area-inset-bottom))}
+}
+@media(max-width:900px) and (max-height:700px){
+ .bs-draw{top:5rem;max-height:25svh}
+ .bs-hero__copy{top:calc(5rem + min(25svh, (100vw - 2 * var(--sc-gutter)) / 2) + 3rem);bottom:5rem}
+ .bs-hero__h1{font-size:1.9rem}
+ .bs-hero__sub{font-size:.9rem;margin-top:.6rem}
+ .bs-eyebrow{display:none}
+ .bs-hero__cta{margin-top:.8rem}
+}
+
 </style>
 </head>
-<body>
+<body class="bs-in-hero">
 
 <a class="bs-skip" href="#main">Skip to content</a>
 <div data-sc-progress></div>
@@ -675,18 +745,19 @@ html{scroll-padding-top:100px} :focus-visible{outline:3px solid var(--sc-accent)
 <span id="top"></span>
 
 <!-- ================================================== PLATE 1 · HERO ======= -->
-<section class="sc-act--pinned" data-sc-act="pin" data-sc-span="4.2" id="hero"
+<section class="sc-act--pinned" data-sc-act="pin" data-sc-span="3.4" id="hero"
          data-plate="01" data-plate-name="Concept" data-stage="Concept"
          data-bom="Architectural survey|Measured elevation, clearances and fixing zones recorded on site">
   <div data-sc-stage class="bs-hero">
 
     <div class="bs-hero__copy">
       <div data-sc-cue="0 0.26 0 0.05">
+        <p class="bs-eyebrow">Big 9 Signages · Designed to be seen</p>
         <h1 class="sc-display bs-hero__h1" data-sc-kinetic="lines">Make your brand impossible to miss.</h1>
         <p class="bs-hero__sub">Designed, fabricated, illuminated and installed for spaces that demand attention.</p>
         <div class="bs-hero__cta">
           <a class="bs-btn bs-btn--primary bs-btn--lg" href="#quote">Design my signage</a>
-          <a class="bs-btn bs-btn--ghost bs-btn--lg" href="#work">See typical environments</a>
+          <a class="bs-btn bs-btn--ghost bs-btn--lg" href="#customer-gallery">Explore our signage</a>
         </div>
       </div>
 
@@ -710,10 +781,12 @@ html{scroll-padding-top:100px} :focus-visible{outline:3px solid var(--sc-accent)
     </div>
 
     <!-- ============ the drawing: an empty building, becoming an illuminated sign -->
+    <a class="bs-scroll-hint" href="#categories"><span>↓</span>Scroll to illuminate · Explore solutions</a>
     <div class="bs-draw" aria-hidden="true">
+      <div class="bs-scene-caption"><span>01 / Bare frontage</span><b>02 / Illuminated identity</b></div>
       <div class="bs-photo">
-        <figure class="bs-photo__layer bs-photo__layer--before"><img src="assets/photo/hero-before.webp" width="1400" height="1855" alt="" decoding="async" fetchpriority="high"></figure>
-        <figure class="bs-photo__layer bs-photo__layer--after"><img src="assets/photo/hero-before.webp" width="1400" height="1855" alt="" decoding="async" fetchpriority="high"><span class="b9-building-sign">big9signages</span></figure>
+        <figure class="bs-photo__layer bs-photo__layer--before"><img src="assets/photo/hero-before.webp" width="1774" height="887" alt="" decoding="async" fetchpriority="high"></figure>
+        <figure class="bs-photo__layer bs-photo__layer--after"><img src="assets/photo/hero-after.webp" width="1774" height="887" alt="" decoding="async" fetchpriority="high"></figure>
         <span class="bs-photo__sheen"></span>
         <span class="bs-photo__grain"></span>
         <span class="bs-photo__vignette"></span>
@@ -1152,8 +1225,8 @@ html{scroll-padding-top:100px} :focus-visible{outline:3px solid var(--sc-accent)
         </div>
 
         <div data-sc-cue="0.64 0.94 0.18 0.08">
-          <p class="sc-body">This is an indicative preview, not a quote. Exact pricing needs a measurement, and a measurement needs a site visit. The specification you just built comes with you to the form.</p>
-          <a class="bs-btn bs-btn--primary" href="#quote" style="margin-top:var(--sc-5)">Send this spec</a>
+          <p class="sc-body">This is an indicative preview, not a quote. Exact pricing needs a measurement, and a measurement needs a site visit. Tell us your preferred options in the enquiry below.</p>
+          <a class="bs-btn bs-btn--primary" href="#quote" style="margin-top:var(--sc-5)">Discuss this design</a>
         </div>
       </div>
 
@@ -1197,17 +1270,17 @@ html{scroll-padding-top:100px} :focus-visible{outline:3px solid var(--sc-accent)
       <div data-sc-in data-sc-stagger="70">
         <p class="bs-plate__tag">Request a quotation</p>
         <h2 class="sc-display sc-display--md">Let us build the sign your building deserves.</h2>
-        <p class="sc-body">Send the basics and we will come back with questions, a site visit slot and a written quotation. No obligation, and we will tell you if your budget will not get you what you have in mind.</p>
+        <p class="sc-body">Tell us your name, number and city. We’ll discuss the right signage for your space, arrange measurements and prepare a quotation.</p>
 
-        <div class="bs-preview" style="margin-top:var(--sc-7);background:transparent;border-style:dashed">
+        <details class="bs-preview" style="margin-top:var(--sc-5);background:transparent;border-style:dashed"><summary style="padding:1rem;cursor:pointer">Explore construction details</summary>
           <div class="bs-preview__head" style="border-bottom-style:dashed">
-            <span>Your specification so far</span>
+            <span>Construction details explored</span>
             <span data-bom-count>0 items</span>
           </div>
           <ol class="bs-bom__list" data-bom-list data-bom-static style="padding:var(--sc-4);max-height:none;overflow:visible"></ol>
-        </div>
+        </details>
 
-        <p style="margin-top:var(--sc-6)">
+        <p class="bs-contact-options">
           <a class="bs-btn bs-btn--ghost" data-call href="tel:+919381556456">Call <span data-phone-display>+91 9381 556 456</span></a>
           <a class="bs-btn bs-btn--ghost" data-wa href="https://wa.me/919381556456" style="margin-left:.5rem">WhatsApp</a>
         </p>
@@ -1216,74 +1289,24 @@ html{scroll-padding-top:100px} :focus-visible{outline:3px solid var(--sc-accent)
       <form class="bs-form" data-sc-in data-sc-stagger="50" data-quote novalidate>
         <div class="bs-form__fields sc-stack">
           <div class="bs-form__row">
-            <div>
-              <label for="f-name">Name <span class="bs-form__req" aria-hidden="true">*</span></label>
-              <input id="f-name" name="name" type="text" required autocomplete="name" aria-describedby="e-name">
-              <span class="bs-form__err" id="e-name" role="alert"></span>
-            </div>
-            <div>
-              <label for="f-company">Company</label>
-              <input id="f-company" name="company" type="text" autocomplete="organization" aria-describedby="e-company">
-              <span class="bs-form__err" id="e-company" role="alert"></span>
-            </div>
+            <div><label for="f-name">Your name <span class="bs-form__req" aria-hidden="true">*</span></label><input id="f-name" name="name" type="text" required autocomplete="name" aria-describedby="e-name"><span class="bs-form__err" id="e-name" role="alert"></span></div>
+            <div><label for="f-phone">Phone number <span class="bs-form__req" aria-hidden="true">*</span></label><input id="f-phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" aria-describedby="e-phone"><span class="bs-form__err" id="e-phone" role="alert"></span></div>
           </div>
-
-          <div class="bs-form__row">
-            <div>
-              <label for="f-phone">Phone <span class="bs-form__req" aria-hidden="true">*</span></label>
-              <input id="f-phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" aria-describedby="e-phone">
-              <span class="bs-form__err" id="e-phone" role="alert"></span>
-            </div>
-            <div>
-              <label for="f-email">Email (optional)</label>
-              <input id="f-email" name="email" type="email" autocomplete="email" aria-describedby="e-email">
-              <span class="bs-form__err" id="e-email" role="alert"></span>
-            </div>
-          </div>
-
-          <div class="bs-form__row">
-            <div>
-              <label for="f-city">City <span class="bs-form__req" aria-hidden="true">*</span></label>
-              <input id="f-city" name="city" type="text" required autocomplete="address-level2" aria-describedby="e-city">
-              <span class="bs-form__err" id="e-city" role="alert"></span>
-            </div>
-            <div>
-              <label for="f-type">Business type</label>
-              <select id="f-type" name="businessType" aria-describedby="e-type">
-                <option value="">Select one</option>
-                <option>Retail</option><option>Restaurant or café</option><option>Corporate office</option>
-                <option>Hospital or clinic</option><option>School or institution</option><option>Gym</option>
-                <option>Real estate developer</option><option>Automobile workshop</option>
-                <option>Hotel or hospitality</option><option>Industrial</option><option>Other</option>
-              </select>
-              <span class="bs-form__err" id="e-type" role="alert"></span>
-            </div>
-          </div>
-
-          <div>
-            <fieldset class="b9-types"><legend>Select your signage requirements</legend><p>Choose one or more. We can help you decide on WhatsApp.</p><label><input type="checkbox" name="signageTypes" value="Storefront signs"> Storefront signs</label><label><input type="checkbox" name="signageTypes" value="LED sign boards"> LED sign boards</label><label><input type="checkbox" name="signageTypes" value="3D channel letters"> 3D channel letters</label><label><input type="checkbox" name="signageTypes" value="Acrylic signs"> Acrylic signs</label><label><input type="checkbox" name="signageTypes" value="Glass signs"> Glass signs</label><label><input type="checkbox" name="signageTypes" value="Neon signs"> Neon signs</label><label><input type="checkbox" name="signageTypes" value="ACP facade signs"> ACP facade signs</label><label><input type="checkbox" name="signageTypes" value="Pylon signs"> Pylon signs</label><label><input type="checkbox" name="signageTypes" value="Monument signs"> Monument signs</label><label><input type="checkbox" name="signageTypes" value="Multi-tenant directory"> Multi-tenant directory</label><label><input type="checkbox" name="signageTypes" value="Wayfinding signs"> Wayfinding signs</label><label><input type="checkbox" name="signageTypes" value="Safety signs"> Safety signs</label><label><input type="checkbox" name="signageTypes" value="Industrial signs"> Industrial signs</label><label><input type="checkbox" name="signageTypes" value="Digital signs"> Digital signs</label><label><input type="checkbox" name="signageTypes" value="Hoardings"> Hoardings</label><label><input type="checkbox" name="signageTypes" value="Vehicle branding"> Vehicle branding</label><label><input type="checkbox" name="signageTypes" value="Promotional signs"> Promotional signs</label><label><input type="checkbox" name="signageTypes" value="Standees"> Standees</label><label><input type="checkbox" name="signageTypes" value="Barricades"> Barricades</label><label><input type="checkbox" name="signageTypes" value="Engraving"> Engraving</label><label><input type="checkbox" name="signageTypes" value="QR code signs"> QR code signs</label><label><input type="checkbox" name="signageTypes" value="Other / please advise"> Other / please advise</label></fieldset><label for="f-req">Additional signage details</label>
-            <textarea id="f-req" name="requirement" rows="3" data-bom-mirror
-              placeholder="Filled in from your specification above"></textarea>
-            <span class="bs-form__err" id="e-req" role="alert"></span>
-          </div>
-
-          <div>
-            <label for="f-dims">Approximate dimensions</label>
-            <input id="f-dims" name="dimensions" type="text" data-bom-mirror-dims
-              placeholder="Filled in from your specification above">
-          </div>
-
-          <div>
-            <label for="f-msg">Message</label>
-            <textarea id="f-msg" name="message" rows="3" placeholder="Anything else we should know: access, timings, permissions, deadline."></textarea>
-          </div>
-
+          <div><label for="f-city">City <span class="bs-form__req" aria-hidden="true">*</span></label><input id="f-city" name="city" type="text" required autocomplete="address-level2" aria-describedby="e-city"><span class="bs-form__err" id="e-city" role="alert"></span></div>
+          <div><label for="f-msg">What kind of sign do you need? (optional)</label><textarea id="f-msg" name="message" rows="2" placeholder="For example: an illuminated shop sign, approximately 10 feet wide."></textarea></div>
+          <details class="b9-optional"><summary>Add signage types and more details (optional)</summary>
+            <fieldset class="b9-types"><legend>Select your signage requirements</legend><p>Choose one or more. We can help you decide on WhatsApp.</p><label><input type="checkbox" name="signageTypes" value="Storefront signs"> Storefront signs</label><label><input type="checkbox" name="signageTypes" value="LED sign boards"> LED sign boards</label><label><input type="checkbox" name="signageTypes" value="3D channel letters"> 3D channel letters</label><label><input type="checkbox" name="signageTypes" value="Acrylic signs"> Acrylic signs</label><label><input type="checkbox" name="signageTypes" value="Glass signs"> Glass signs</label><label><input type="checkbox" name="signageTypes" value="Neon signs"> Neon signs</label><label><input type="checkbox" name="signageTypes" value="ACP facade signs"> ACP facade signs</label><label><input type="checkbox" name="signageTypes" value="Pylon signs"> Pylon signs</label><label><input type="checkbox" name="signageTypes" value="Monument signs"> Monument signs</label><label><input type="checkbox" name="signageTypes" value="Multi-tenant directory"> Multi-tenant directory</label><label><input type="checkbox" name="signageTypes" value="Wayfinding signs"> Wayfinding signs</label><label><input type="checkbox" name="signageTypes" value="Safety signs"> Safety signs</label><label><input type="checkbox" name="signageTypes" value="Industrial signs"> Industrial signs</label><label><input type="checkbox" name="signageTypes" value="Digital signs"> Digital signs</label><label><input type="checkbox" name="signageTypes" value="Hoardings"> Hoardings</label><label><input type="checkbox" name="signageTypes" value="Vehicle branding"> Vehicle branding</label><label><input type="checkbox" name="signageTypes" value="Promotional signs"> Promotional signs</label><label><input type="checkbox" name="signageTypes" value="Standees"> Standees</label><label><input type="checkbox" name="signageTypes" value="Barricades"> Barricades</label><label><input type="checkbox" name="signageTypes" value="Engraving"> Engraving</label><label><input type="checkbox" name="signageTypes" value="QR code signs"> QR code signs</label><label><input type="checkbox" name="signageTypes" value="Other / please advise"> Other / please advise</label></fieldset>
+            <div class="bs-form__row"><div><label for="f-company">Company</label><input id="f-company" name="company" autocomplete="organization"></div><div><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" aria-describedby="e-email"><span class="bs-form__err" id="e-email" role="alert"></span></div></div>
+            <div><label for="f-type">Business type</label><select id="f-type" name="businessType"><option value="">Select one</option><option>Retail</option><option>Restaurant or café</option><option>Corporate office</option><option>Hospital or clinic</option><option>School or institution</option><option>Gym</option><option>Real estate developer</option><option>Automobile workshop</option><option>Hotel or hospitality</option><option>Industrial</option><option>Other</option></select></div>
+            <div><label for="f-dims">Approximate dimensions</label><input id="f-dims" name="dimensions" placeholder="For example: 10 ft wide"></div>
+            <div><label for="f-req">Additional details</label><textarea id="f-req" name="requirement" rows="2" placeholder="Materials, lighting or installation details"></textarea></div>
+          </details>
           <button class="bs-btn bs-btn--primary bs-btn--lg" type="submit">Continue on WhatsApp</button>
-          <p class="bs-form__note">Continuing opens WhatsApp with your details and selected requirements. Review and send the message to Big 9 Signages. Final pricing follows a site assessment.</p>
+          <p class="bs-form__note">WhatsApp will open with your enquiry. Please review and press Send to contact us.</p>
         </div>
 
         <div class="bs-form__done" role="status">
-          <h3>Your WhatsApp enquiry is ready.</h3><a id="whatsapp-resume" class="bs-btn bs-btn--primary" hidden>Open WhatsApp again</a>
+          <h3>Your WhatsApp enquiry is ready.</h3><button type="button" class="bs-btn bs-btn--ghost" data-edit-enquiry>Edit enquiry</button><a id="whatsapp-resume" class="bs-btn bs-btn--primary" hidden>Open WhatsApp again</a>
           <p>Your quotation request is prepared. Review it in WhatsApp and press Send to start the conversation. It has not been submitted until you send it.</p>
           <p class="bs-form__note" data-fallback hidden><span data-fallback-label>email us directly at</span> <span data-email-fallback></span>.</p>
         </div>
@@ -1572,21 +1595,7 @@ function renderBOM(){
 const studioState = { type:"Front-lit letters", light:"Halo-lit", material:"Aluminium", size:"6 m", dimsChanged:false };
 
 /* the specification the visitor built, handed to the form */
-function mirrorToForm(){
-  const req  = $("#f-req"), dims = $("#f-dims");
-  if (!req || !dims) return;
-  const ordered = bomStore.slice().sort((a,b) => (a.__slot?1:0) - (b.__slot?1:0));
-  if (ordered.length){
-    req.value = ordered.map(b => `${b.label} (${b.spec})`).join("\n");
-    req.placeholder = "";
-  }
-  const chosen = studioState.size;
-  if (chosen){
-    const face = studioState.material;
-    dims.value = `${chosen} wide ${(studioState.type||"sign").toLowerCase()}` + (face ? `, ${face.toLowerCase()} face` : "");
-    dims.placeholder = "";
-  }
-}
+function mirrorToForm(){ /* The quote form is filled by the customer. */ }
 
 function addBom(label, spec){
   if (bomStore.some(b => b.label === label)) return;
@@ -1720,25 +1729,34 @@ function readHero(){
    CTAs, so the landing state is complete without any motion. */
 const heroReduce = matchMedia("(prefers-reduced-motion: reduce)");
 let heroRunning = false;
+let heroVisible = true;
+let heroFrame = 0;
 function heroTick(){
   if (!heroRunning) return;
   readHero();
-  requestAnimationFrame(heroTick);
+  heroFrame = requestAnimationFrame(heroTick);
 }
 function heroSync(){
   if (heroReduce.matches){
     heroRunning = false;
+    cancelAnimationFrame(heroFrame);
     hp = 1;
     hero.style.setProperty("--bs-hp", "1");
     hero.style.setProperty("--bs-wipe", "118%");   /* fully revealed, no motion */
     paintHero();
-  } else if (!heroRunning){
+  } else if (heroVisible && !heroRunning){
     heroRunning = true;
     heroTick();
   }
 }
 heroSync();
 heroReduce.addEventListener("change", heroSync);
+new IntersectionObserver(([entry]) => {
+  heroVisible = entry.isIntersecting;
+  document.body.classList.toggle("bs-in-hero", heroVisible);
+  if (!heroVisible){ heroRunning = false; cancelAnimationFrame(heroFrame); }
+  else heroSync();
+}).observe(hero);
 
 /* the drawn sign reads the brand name, from one config value */
 $$("[data-sign-text]").forEach(t => { t.textContent = "BIG9SIGNAGES"; });
@@ -1967,6 +1985,7 @@ document.addEventListener("keydown", e => {
 
 /* ================================================== the quote form ========= */
 const form = $("[data-quote]");
+$("[data-edit-enquiry]").addEventListener("click", () => { form.classList.remove("is-sent"); $("#f-name").focus(); });
 form.addEventListener("submit", e => {
   e.preventDefault();
   let ok = true, first = null;
@@ -1986,6 +2005,8 @@ form.addEventListener("submit", e => {
     el.setAttribute("aria-invalid", String(bad));
     if (bad){ ok = false; if (!first) first = el; }
   });
+  const email = $("#f-email");
+  if (email.value.trim() && !email.validity.valid) { $("#e-email").textContent = "Please enter a valid email address."; email.setAttribute("aria-invalid", "true"); email.closest("details").open = true; ok = false; if (!first) first = email; }
   if (!ok){ first.focus(); return; }
 
   const fd = new FormData(form);
@@ -1998,9 +2019,6 @@ form.addEventListener("submit", e => {
     `Signage types: ${fd.getAll("signageTypes").join(", ") || "Please advise"}`,
     `City: ${fd.get("city")}`,
     `Business type: ${fd.get("businessType") || "-"}`,
-    "",
-    "SPECIFICATION BUILT ON SITE",
-    ...bomStore.map(b => `- ${b.label} (${b.spec})`),
     "",
     fd.get("requirement") ? `Details:\n${fd.get("requirement")}` : "",
     fd.get("message") ? `Message:\n${fd.get("message")}` : ""
@@ -2060,7 +2078,7 @@ function updateMargin(){
   const scrolled = window.scrollY > 40;
   topbar.classList.toggle("is-set", scrolled);
   margin.classList.toggle("is-set", scrolled);
-  margin.classList.toggle("is-live", scrolled);
+  margin.classList.toggle("is-live", window.scrollY >= hero.offsetTop + hero.offsetHeight - window.innerHeight);
 
   /* which plate is the reader in */
   const mid = window.scrollY + window.innerHeight * 0.45;
