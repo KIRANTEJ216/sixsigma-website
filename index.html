@@ -106,7 +106,7 @@
 .bs-top.is-set::before{ opacity:0 }
 .bs-top > *{ position:relative }
 .bs-mark{display:flex;align-items:center;gap:.6rem;text-decoration:none;flex:0 0 auto;min-height:44px;touch-action:manipulation}
-.bs-mark svg{width:26px;height:26px;flex:0 0 auto}
+.bs-mark svg{width:26px;height:26px;flex:0 0 auto}\n.bs-mark__logo{width:74px;height:42px;object-fit:contain;flex:0 0 auto}\n.bs-mark__icon{display:none}\n.bs-mark__name{font-size:.9rem!important}\n@media(max-width:560px){.bs-mark__logo{width:58px;height:34px}.bs-mark__name{display:none!important}}
 .bs-mark b{font-family:var(--sc-font-display);font-size:.95rem;font-weight:600;letter-spacing:var(--sc-track-snug);white-space:nowrap}
 .bs-nav{display:flex;gap:var(--sc-5);margin-left:auto}
 .bs-theme{
@@ -679,11 +679,11 @@ html{scroll-padding-top:6rem}
 <!-- ======================================================= CHROME: TOP BAR -->
 <header class="bs-top" id="bs-top">
   <a class="bs-mark" href="#top">
-    <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+    <img class="bs-mark__logo" src="assets/photo/big9-logo.png" alt="" width="112" height="63">\n    <svg class="bs-mark__icon" viewBox="0 0 32 32" fill="none" aria-hidden="true">
       <rect x="1" y="1" width="30" height="30" rx="7" stroke="currentColor" stroke-opacity=".22"/>
       <path d="M7 22h18M10.5 22V10h11v12" stroke="var(--sc-accent)" stroke-width="2" stroke-linecap="square"/>
     </svg>
-    <b data-brand-name>Big 9 Signages</b>
+    <b data-brand-name class="bs-mark__name">Big 9 Signages</b>
   </a>
   <nav class="bs-nav" aria-label="Sections">
     <a href="#categories">Solutions</a>
