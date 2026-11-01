@@ -6,7 +6,7 @@ module.exports = async function handler(req, res) {
       !p.customer || typeof p.customer.name !== "string" || !p.customer.name.trim() ||
       typeof p.customer.phone !== "string" || !p.quote || typeof p.quote.city !== "string" || !p.quote.city.trim() ||
       JSON.stringify(p).length > 16000) return res.status(400).json({message:"Invalid quotation details"});
-  const endpoint = process.env.QUOTE_WEBHOOK_URL || "https://kktej3d.n8n-wsk.com/webhook-test/big9signage";
+  const endpoint = process.env.QUOTE_WEBHOOK_URL || "https://kktej3d.n8n-wsk.com/webhook/big9signage";
   try {
     const upstream = await fetch(endpoint, {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(p),signal:AbortSignal.timeout(12000),redirect:"error"});
     if (!upstream.ok) return res.status(502).json({message:"WEBHOOK_UNAVAILABLE"});
