@@ -1301,7 +1301,7 @@ html{scroll-padding-top:6rem}
             <div><label for="f-dims">Approximate dimensions</label><input id="f-dims" name="dimensions" placeholder="For example: 10 ft wide"></div>
             <div><label for="f-req">Additional details</label><textarea id="f-req" name="requirement" rows="2" placeholder="Materials, lighting or installation details"></textarea></div>
           </details>
-          <button class="bs-btn bs-btn--primary bs-btn--lg" type="submit">Continue on WhatsApp</button>
+          <p id="quote-webhook-status" role="status" aria-live="polite"></p><a id="quote-webhook-fallback" hidden>Continue on WhatsApp</a><button class="bs-btn bs-btn--primary bs-btn--lg" type="submit">Continue on WhatsApp</button>
           <p class="bs-form__note">WhatsApp will open with your enquiry. Please review and press Send to contact us.</p>
         </div>
 
@@ -1963,6 +1963,8 @@ document.addEventListener("keydown", e => {
 
 /* ================================================== the quote form ========= */
 const form = $("[data-quote]");
+if (BRAND.formEndpoint) { form.querySelector('[type="submit"]').textContent = "Send quotation request"; form.querySelector(".bs-form__note").textContent = "Your details will be sent to Big 9 Signages to handle your quotation. You can then continue on WhatsApp."; }
+form.addEventListener("input", () => { delete form.dataset.requestId; });
 $("[data-edit-enquiry]").addEventListener("click", () => { form.classList.remove("is-sent"); $("#f-name").focus(); });
 form.addEventListener("submit", e => {
   e.preventDefault();
@@ -2014,10 +2016,43 @@ form.addEventListener("submit", e => {
   const subject = encodeURIComponent(`Signage enquiry: ${fd.get("name")}, ${fd.get("city")}`);
   const body = encodeURIComponent(lines.join("\n"));
 
+  const submit = form.querySelector('[type="submit"]');
+  if (submit.disabled) return;
   if (BRAND.formEndpoint){
-    fetch(BRAND.formEndpoint, { method:"POST", body: fd })
-      .then(r => { if (!r.ok) throw 0; form.classList.add("is-sent"); })
-      .catch(() => { deliver(subject, body); });
+    // The endpoint is public. Store Sheets/database/WhatsApp credentials only on the server.
+    const requestId = form.dataset.requestId || crypto.randomUUID();
+    form.dataset.requestId = requestId;
+    const payload = {
+      event: "quote.requested", version: 1, requestId,
+      submittedAt: new Date().toISOString(),
+      source: location.origin + location.pathname,
+      customer: {name: fd.get("name"), phone: fd.get("phone"), email: fd.get("email") || "", company: fd.get("company") || ""},
+      quote: {city: fd.get("city"), signageTypes: fd.getAll("signageTypes"), dimensions: fd.get("dimensions") || "", businessType: fd.get("businessType") || "", message: fd.get("message") || "", requirement: fd.get("requirement") || ""},
+      contactPreference: "customer_initiated_whatsapp"
+    };
+    submit.disabled = true;
+    const previous = submit.textContent;
+    submit.textContent = "Saving your request…";
+    fetch(BRAND.formEndpoint, {
+      method: "POST", headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(payload), signal: AbortSignal.timeout(15000)
+    }).then(async r => {
+      if (!r.ok) throw new Error("Request not accepted");
+      const ack = await r.json();
+      if (ack.accepted !== true || ack.requestId !== requestId) throw new Error("Missing acknowledgement");
+      form.classList.add("is-sent");
+      form.querySelector(".bs-form__done h3").textContent = "Your quotation request has been received.";
+      form.querySelector(".bs-form__done p").textContent = "Your details have been accepted. You can continue the conversation on WhatsApp.";
+      const resume = $("#whatsapp-resume");
+      resume.href = `https://wa.me/${BRAND.whatsapp}?text=${body}`;
+      resume.hidden = false;
+      $("#quote-webhook-status").textContent = "";
+    }).catch(() => {
+      $("#quote-webhook-status").textContent = "We could not confirm that your request was saved. Retry, or continue on WhatsApp below.";
+      const resume = $("#quote-webhook-fallback");
+      resume.href = `https://wa.me/${BRAND.whatsapp}?text=${body}`;
+      resume.hidden = false;
+    }).finally(() => {submit.disabled = false; submit.textContent = previous;});
   } else {
     form.classList.add("is-sent");
     deliver(subject, body);
