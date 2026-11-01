@@ -1270,7 +1270,7 @@ html{scroll-padding-top:6rem}
       <div data-sc-in data-sc-stagger="70">
         <p class="bs-plate__tag">Request a quotation</p>
         <h2 class="sc-display sc-display--md">Let us build the sign your building deserves.</h2>
-        <p class="sc-body">Tell us your name, number and city. We’ll discuss the right signage for your space, arrange measurements and prepare a quotation.</p>
+        <p class="sc-body">Tell us your name, company, email, number and city. We’ll discuss the right signage for your space, arrange measurements and prepare a quotation.</p>
 
         <details class="bs-preview" style="margin-top:var(--sc-5);background:transparent;border-style:dashed"><summary style="padding:1rem;cursor:pointer">Explore construction details</summary>
           <div class="bs-preview__head" style="border-bottom-style:dashed">
@@ -1292,11 +1292,12 @@ html{scroll-padding-top:6rem}
             <div><label for="f-name">Your name <span class="bs-form__req" aria-hidden="true">*</span></label><input id="f-name" name="name" type="text" required autocomplete="name" aria-describedby="e-name"><span class="bs-form__err" id="e-name" role="alert"></span></div>
             <div><label for="f-phone">Phone number <span class="bs-form__req" aria-hidden="true">*</span></label><input id="f-phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" aria-describedby="e-phone"><span class="bs-form__err" id="e-phone" role="alert"></span></div>
           </div>
+          <div class="bs-form__row"><div><label for="f-company">Company <span class="bs-form__req" aria-hidden="true">*</span></label><input id="f-company" name="company" required autocomplete="organization" aria-describedby="e-company"><span class="bs-form__err" id="e-company" role="alert"></span></div><div><label for="f-email">Email <span class="bs-form__req" aria-hidden="true">*</span></label><input id="f-email" name="email" type="email" required autocomplete="email" aria-describedby="e-email"><span class="bs-form__err" id="e-email" role="alert"></span></div></div>
           <div><label for="f-city">City <span class="bs-form__req" aria-hidden="true">*</span></label><input id="f-city" name="city" type="text" required autocomplete="address-level2" aria-describedby="e-city"><span class="bs-form__err" id="e-city" role="alert"></span></div>
           <div><label for="f-msg">What kind of sign do you need? (optional)</label><textarea id="f-msg" name="message" rows="2" placeholder="For example: an illuminated shop sign, approximately 10 feet wide."></textarea></div>
           <details class="b9-optional"><summary>Add signage types and more details (optional)</summary>
             <fieldset class="b9-types"><legend>Select your signage requirements</legend><p>Choose one or more. We can help you decide on WhatsApp.</p><label><input type="checkbox" name="signageTypes" value="Storefront signs"> Storefront signs</label><label><input type="checkbox" name="signageTypes" value="LED sign boards"> LED sign boards</label><label><input type="checkbox" name="signageTypes" value="3D channel letters"> 3D channel letters</label><label><input type="checkbox" name="signageTypes" value="Acrylic signs"> Acrylic signs</label><label><input type="checkbox" name="signageTypes" value="Glass signs"> Glass signs</label><label><input type="checkbox" name="signageTypes" value="Neon signs"> Neon signs</label><label><input type="checkbox" name="signageTypes" value="Other / please advise"> Other / please advise</label></fieldset>
-            <div class="bs-form__row"><div><label for="f-company">Company</label><input id="f-company" name="company" autocomplete="organization"></div><div><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" aria-describedby="e-email"><span class="bs-form__err" id="e-email" role="alert"></span></div></div>
+            
             
             <div><label for="f-dims">Approximate dimensions</label><input id="f-dims" name="dimensions" placeholder="For example: 10 ft wide"></div>
             
@@ -1973,7 +1974,9 @@ form.addEventListener("submit", e => {
     ["#f-name","#e-name","Please tell us your name."],
     ["#f-phone","#e-phone","A number we can reach you on."],
 
-    ["#f-city","#e-city","Which city is the site in?"]
+    ["#f-city","#e-city","Which city is the site in?"],
+    ["#f-company","#e-company","Please enter your company name."],
+    ["#f-email","#e-email","Please enter a valid email address."]
   ];
   need.forEach(([sel, err, msg]) => {
     const el = $(sel), e2 = $(err);
@@ -1986,7 +1989,7 @@ form.addEventListener("submit", e => {
     if (bad){ ok = false; if (!first) first = el; }
   });
   const email = $("#f-email");
-  if (email.value.trim() && !email.validity.valid) { $("#e-email").textContent = "Please enter a valid email address."; email.setAttribute("aria-invalid", "true"); email.closest("details").open = true; ok = false; if (!first) first = email; }
+  if (email.value.trim() && !email.validity.valid) { $("#e-email").textContent = "Please enter a valid email address."; email.setAttribute("aria-invalid", "true");  ok = false; if (!first) first = email; }
   if (!ok){ first.focus(); return; }
 
   const fd = new FormData(form);
@@ -2060,7 +2063,7 @@ form.addEventListener("submit", e => {
 });
 
 /* live-clear the error the moment the visitor starts fixing it */
-["#f-name","#f-phone","#f-email","#f-city"].forEach(sel => {
+["#f-name","#f-phone","#f-email","#f-city","#f-company"].forEach(sel => {
   const el = $(sel);
   el.addEventListener("input", () => {
     if (el.getAttribute("aria-invalid") === "true"){
