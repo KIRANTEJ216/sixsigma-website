@@ -1371,7 +1371,7 @@ const BRAND = {
   /* Where the form should POST. Empty = the form composes a mailto: with the
      specification in the body, which needs no backend. Set to an endpoint URL
      to POST instead. */
-  formEndpoint:    "https://kktej3d.n8n-wsk.com/webhook-test/big9signage"
+  formEndpoint:    "/api/quote"
 };
 
 /* ---------- editable content ---------- */
@@ -2037,7 +2037,7 @@ form.addEventListener("submit", e => {
       method: "POST", headers: {"Content-Type": "application/json"},
       body: JSON.stringify(payload), signal: AbortSignal.timeout(15000)
     }).then(async r => {
-      if (!r.ok) throw new Error("Request not accepted");
+      if (!r.ok) { const error = await r.json().catch(() => ({})); throw new Error(error.message || "Request not accepted"); }
       const ack = await r.json();
       if (ack.accepted !== true || ack.requestId !== requestId) throw new Error("Missing acknowledgement");
       form.classList.add("is-sent");
@@ -2047,8 +2047,8 @@ form.addEventListener("submit", e => {
       resume.href = `https://wa.me/${BRAND.whatsapp}?text=${body}`;
       resume.hidden = false;
       $("#quote-webhook-status").textContent = "";
-    }).catch(() => {
-      $("#quote-webhook-status").textContent = "We could not confirm that your request was saved. Retry, or continue on WhatsApp below.";
+    }).catch(error => {
+      $("#quote-webhook-status").textContent = error.message === "WEBHOOK_UNAVAILABLE" ? "Our enquiry service is temporarily unavailable. Please continue on WhatsApp." : "We could not confirm that your request was saved. Retry, or continue on WhatsApp below.";
       const resume = $("#quote-webhook-fallback");
       resume.href = `https://wa.me/${BRAND.whatsapp}?text=${body}`;
       resume.hidden = false;
