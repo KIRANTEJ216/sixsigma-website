@@ -1270,7 +1270,7 @@ html{scroll-padding-top:6rem}
       <div data-sc-in data-sc-stagger="70">
         <p class="bs-plate__tag">Request a quotation</p>
         <h2 class="sc-display sc-display--md">Let us build the sign your building deserves.</h2>
-        <p class="sc-body">Tell us your name, number and city. We’ll discuss the right signage for your space, arrange measurements and prepare a quotation.</p>
+        <p class="sc-body">Tell us your name, company, email, number and city. We’ll discuss the right signage for your space, arrange measurements and prepare a quotation.</p>
 
         <details class="bs-preview" style="margin-top:var(--sc-5);background:transparent;border-style:dashed"><summary style="padding:1rem;cursor:pointer">Explore construction details</summary>
           <div class="bs-preview__head" style="border-bottom-style:dashed">
@@ -1292,14 +1292,15 @@ html{scroll-padding-top:6rem}
             <div><label for="f-name">Your name <span class="bs-form__req" aria-hidden="true">*</span></label><input id="f-name" name="name" type="text" required autocomplete="name" aria-describedby="e-name"><span class="bs-form__err" id="e-name" role="alert"></span></div>
             <div><label for="f-phone">Phone number <span class="bs-form__req" aria-hidden="true">*</span></label><input id="f-phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" aria-describedby="e-phone"><span class="bs-form__err" id="e-phone" role="alert"></span></div>
           </div>
+          <div class="bs-form__row"><div><label for="f-company">Company <span class="bs-form__req" aria-hidden="true">*</span></label><input id="f-company" name="company" required autocomplete="organization" aria-describedby="e-company"><span class="bs-form__err" id="e-company" role="alert"></span></div><div><label for="f-email">Email <span class="bs-form__req" aria-hidden="true">*</span></label><input id="f-email" name="email" type="email" required autocomplete="email" aria-describedby="e-email"><span class="bs-form__err" id="e-email" role="alert"></span></div></div>
           <div><label for="f-city">City <span class="bs-form__req" aria-hidden="true">*</span></label><input id="f-city" name="city" type="text" required autocomplete="address-level2" aria-describedby="e-city"><span class="bs-form__err" id="e-city" role="alert"></span></div>
           <div><label for="f-msg">What kind of sign do you need? (optional)</label><textarea id="f-msg" name="message" rows="2" placeholder="For example: an illuminated shop sign, approximately 10 feet wide."></textarea></div>
           <details class="b9-optional"><summary>Add signage types and more details (optional)</summary>
-            <fieldset class="b9-types"><legend>Select your signage requirements</legend><p>Choose one or more. We can help you decide on WhatsApp.</p><label><input type="checkbox" name="signageTypes" value="Storefront signs"> Storefront signs</label><label><input type="checkbox" name="signageTypes" value="LED sign boards"> LED sign boards</label><label><input type="checkbox" name="signageTypes" value="3D channel letters"> 3D channel letters</label><label><input type="checkbox" name="signageTypes" value="Acrylic signs"> Acrylic signs</label><label><input type="checkbox" name="signageTypes" value="Glass signs"> Glass signs</label><label><input type="checkbox" name="signageTypes" value="Neon signs"> Neon signs</label><label><input type="checkbox" name="signageTypes" value="ACP facade signs"> ACP facade signs</label><label><input type="checkbox" name="signageTypes" value="Pylon signs"> Pylon signs</label><label><input type="checkbox" name="signageTypes" value="Monument signs"> Monument signs</label><label><input type="checkbox" name="signageTypes" value="Multi-tenant directory"> Multi-tenant directory</label><label><input type="checkbox" name="signageTypes" value="Wayfinding signs"> Wayfinding signs</label><label><input type="checkbox" name="signageTypes" value="Safety signs"> Safety signs</label><label><input type="checkbox" name="signageTypes" value="Industrial signs"> Industrial signs</label><label><input type="checkbox" name="signageTypes" value="Digital signs"> Digital signs</label><label><input type="checkbox" name="signageTypes" value="Hoardings"> Hoardings</label><label><input type="checkbox" name="signageTypes" value="Vehicle branding"> Vehicle branding</label><label><input type="checkbox" name="signageTypes" value="Promotional signs"> Promotional signs</label><label><input type="checkbox" name="signageTypes" value="Standees"> Standees</label><label><input type="checkbox" name="signageTypes" value="Barricades"> Barricades</label><label><input type="checkbox" name="signageTypes" value="Engraving"> Engraving</label><label><input type="checkbox" name="signageTypes" value="QR code signs"> QR code signs</label><label><input type="checkbox" name="signageTypes" value="Other / please advise"> Other / please advise</label></fieldset>
-            <div class="bs-form__row"><div><label for="f-company">Company</label><input id="f-company" name="company" autocomplete="organization"></div><div><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" aria-describedby="e-email"><span class="bs-form__err" id="e-email" role="alert"></span></div></div>
-            <div><label for="f-type">Business type</label><select id="f-type" name="businessType"><option value="">Select one</option><option>Retail</option><option>Restaurant or café</option><option>Corporate office</option><option>Hospital or clinic</option><option>School or institution</option><option>Gym</option><option>Real estate developer</option><option>Automobile workshop</option><option>Hotel or hospitality</option><option>Industrial</option><option>Other</option></select></div>
+            <fieldset class="b9-types"><legend>Select your signage requirements</legend><p>Choose one or more. We can help you decide on WhatsApp.</p><label><input type="checkbox" name="signageTypes" value="Storefront signs"> Storefront signs</label><label><input type="checkbox" name="signageTypes" value="LED sign boards"> LED sign boards</label><label><input type="checkbox" name="signageTypes" value="3D channel letters"> 3D channel letters</label><label><input type="checkbox" name="signageTypes" value="Acrylic signs"> Acrylic signs</label><label><input type="checkbox" name="signageTypes" value="Glass signs"> Glass signs</label><label><input type="checkbox" name="signageTypes" value="Neon signs"> Neon signs</label><label><input type="checkbox" name="signageTypes" value="Other / please advise"> Other / please advise</label></fieldset>
+            
+            
             <div><label for="f-dims">Approximate dimensions</label><input id="f-dims" name="dimensions" placeholder="For example: 10 ft wide"></div>
-            <div><label for="f-req">Additional details</label><textarea id="f-req" name="requirement" rows="2" placeholder="Materials, lighting or installation details"></textarea></div>
+            
           </details>
           <p id="quote-webhook-status" role="status" aria-live="polite"></p><a id="quote-webhook-fallback" hidden>Continue on WhatsApp</a><button class="bs-btn bs-btn--primary bs-btn--lg" type="submit">Continue on WhatsApp</button>
           <p class="bs-form__note">WhatsApp will open with your enquiry. Please review and press Send to contact us.</p>
@@ -1371,7 +1372,7 @@ const BRAND = {
   /* Where the form should POST. Empty = the form composes a mailto: with the
      specification in the body, which needs no backend. Set to an endpoint URL
      to POST instead. */
-  formEndpoint:    "https://kktej3d.n8n-wsk.com/webhook-test/big9signage"
+  formEndpoint:    "/api/quote"
 };
 
 /* ---------- editable content ---------- */
@@ -1973,7 +1974,9 @@ form.addEventListener("submit", e => {
     ["#f-name","#e-name","Please tell us your name."],
     ["#f-phone","#e-phone","A number we can reach you on."],
 
-    ["#f-city","#e-city","Which city is the site in?"]
+    ["#f-city","#e-city","Which city is the site in?"],
+    ["#f-company","#e-company","Please enter your company name."],
+    ["#f-email","#e-email","Please enter a valid email address."]
   ];
   need.forEach(([sel, err, msg]) => {
     const el = $(sel), e2 = $(err);
@@ -1986,7 +1989,7 @@ form.addEventListener("submit", e => {
     if (bad){ ok = false; if (!first) first = el; }
   });
   const email = $("#f-email");
-  if (email.value.trim() && !email.validity.valid) { $("#e-email").textContent = "Please enter a valid email address."; email.setAttribute("aria-invalid", "true"); email.closest("details").open = true; ok = false; if (!first) first = email; }
+  if (email.value.trim() && !email.validity.valid) { $("#e-email").textContent = "Please enter a valid email address."; email.setAttribute("aria-invalid", "true");  ok = false; if (!first) first = email; }
   if (!ok){ first.focus(); return; }
 
   const fd = new FormData(form);
@@ -1998,7 +2001,6 @@ form.addEventListener("submit", e => {
     `Dimensions: ${fd.get("dimensions") || "To be measured"}`,
     `Signage types: ${fd.getAll("signageTypes").join(", ") || "Please advise"}`,
     `City: ${fd.get("city")}`,
-    `Business type: ${fd.get("businessType") || "-"}`,
     "",
     fd.get("requirement") ? `Details:\n${fd.get("requirement")}` : "",
     fd.get("message") ? `Message:\n${fd.get("message")}` : ""
@@ -2027,7 +2029,7 @@ form.addEventListener("submit", e => {
       submittedAt: new Date().toISOString(),
       source: location.origin + location.pathname,
       customer: {name: fd.get("name"), phone: fd.get("phone"), email: fd.get("email") || "", company: fd.get("company") || ""},
-      quote: {city: fd.get("city"), signageTypes: fd.getAll("signageTypes"), dimensions: fd.get("dimensions") || "", businessType: fd.get("businessType") || "", message: fd.get("message") || "", requirement: fd.get("requirement") || ""},
+      quote: {city: fd.get("city"), signageTypes: fd.getAll("signageTypes"), dimensions: fd.get("dimensions") || "", message: fd.get("message") || ""},
       contactPreference: "customer_initiated_whatsapp"
     };
     submit.disabled = true;
@@ -2037,7 +2039,7 @@ form.addEventListener("submit", e => {
       method: "POST", headers: {"Content-Type": "application/json"},
       body: JSON.stringify(payload), signal: AbortSignal.timeout(15000)
     }).then(async r => {
-      if (!r.ok) throw new Error("Request not accepted");
+      if (!r.ok) { const error = await r.json().catch(() => ({})); throw new Error(error.message || "Request not accepted"); }
       const ack = await r.json();
       if (ack.accepted !== true || ack.requestId !== requestId) throw new Error("Missing acknowledgement");
       form.classList.add("is-sent");
@@ -2047,8 +2049,8 @@ form.addEventListener("submit", e => {
       resume.href = `https://wa.me/${BRAND.whatsapp}?text=${body}`;
       resume.hidden = false;
       $("#quote-webhook-status").textContent = "";
-    }).catch(() => {
-      $("#quote-webhook-status").textContent = "We could not confirm that your request was saved. Retry, or continue on WhatsApp below.";
+    }).catch(error => {
+      $("#quote-webhook-status").textContent = error.message === "WEBHOOK_UNAVAILABLE" ? "Our enquiry service is temporarily unavailable. Please continue on WhatsApp." : "We could not confirm that your request was saved. Retry, or continue on WhatsApp below.";
       const resume = $("#quote-webhook-fallback");
       resume.href = `https://wa.me/${BRAND.whatsapp}?text=${body}`;
       resume.hidden = false;
@@ -2061,7 +2063,7 @@ form.addEventListener("submit", e => {
 });
 
 /* live-clear the error the moment the visitor starts fixing it */
-["#f-name","#f-phone","#f-email","#f-city"].forEach(sel => {
+["#f-name","#f-phone","#f-email","#f-city","#f-company"].forEach(sel => {
   const el = $(sel);
   el.addEventListener("input", () => {
     if (el.getAttribute("aria-invalid") === "true"){
