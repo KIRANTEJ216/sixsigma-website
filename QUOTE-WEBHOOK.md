@@ -11,3 +11,15 @@ Catalogue bot is a separate inbound WhatsApp integration: validate provider webh
 Required configuration: ingestion URL; Google Sheet ID/tab and credential connection; catalogue database type/schema/access; WhatsApp Business provider and phone-number ID; server-side credentials and webhook verification configuration. Do not paste private keys into chat or frontend code.
 
 Status: frontend integration prepared; endpoint, spreadsheet delivery and WhatsApp bot are NOT connected or verified. Existing WhatsApp handoff remains active until an endpoint is configured.
+
+## Supplied test configuration
+
+Endpoint: https://kktej3d.n8n-wsk.com/webhook-test/big9signage
+Google Sheet ID: 1opkXjj7D3iPyGQQkMaIyz-903ZBXrh0f2GbtTN4SciY
+Sheet tab gid: 0 (tab name still needs selection in n8n).
+
+The test URL requires Listen for test event in n8n. Before launch, activate/publish the workflow and supply its production webhook URL. Do not infer a production URL or change to it without checking the workflow.
+
+In the Google Sheets node select the supplied document and tab, authenticate with an account that can edit it, and map the JSON customer and quote objects to columns. Return accepted:true and the incoming requestId only after durable acceptance. Website-to-webhook CORS must allow the preview origin and production site. A default empty/Workflow started response will not be treated as confirmed delivery.
+
+The URL is configured in the review branch; no submission or spreadsheet write has been verified. WhatsApp provider and catalogue database configuration are still required.
