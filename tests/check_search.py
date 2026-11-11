@@ -17,10 +17,14 @@ for p in files:
 for item in json.loads((r/'content/url-map.json').read_text()):assert (r/item['preserved_path'].lstrip('/')).exists()
 etree.parse(str(r/'sitemap.xml'));json.loads((r/'vercel.json').read_text())
 assert 'OAI-SearchBot\nAllow: /' in (r/'robots.txt').read_text()
-assert 'Dimensions:' in (r/'index.html').read_text()
+assert 'Dimensions:' in (r/'premium-review/premium.js').read_text()
 print(f'PASS: {len(files)} HTML pages, JSON-LD, inline JS syntax, internal page links, blog path preservation, sitemap and Vercel config')
 
-assert all(x.get('src').startswith('/assets/customer/') for x in html.parse(str(r/'index.html')).xpath('//section[@id="customer-gallery"]//img'))
+home=html.parse(str(r/'index.html'))
+assert home.xpath('//section[contains(@class,"hero")]//img[@src="/assets/photo/hero-after.webp"]')
+assert home.xpath('//form[@id="quoteForm"]//input[@name="company" and @required]')
+assert home.xpath('//form[@id="quoteForm"]//input[@name="email" and @required]')
+assert html.parse(str(r/'gallery/index.html')).xpath('//img[starts-with(@src,"/assets/customer/")]')
 assert all(x.get('src').startswith('/assets/customer/') for x in html.parse(str(r/'2025/12/xyz.html')).xpath('//article//img'))
 
 from urllib.parse import urlparse

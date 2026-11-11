@@ -23,7 +23,8 @@ const fallback = document.querySelector('#quoteFallback');
 let requestId;
 
 if (demo) {
-  document.querySelector('.review-strip').textContent = 'PRIVATE DESIGN REVIEW · Quotations are simulated on this preview';
+  const reviewStrip = document.querySelector('.review-strip');
+  if (reviewStrip) reviewStrip.textContent = 'PRIVATE DESIGN REVIEW · Quotations are simulated on this preview';
   document.querySelector('.quote-layout > div > p').textContent = 'Explore the form in demo mode. No request will be sent.';
   submit.firstChild.textContent = 'Preview quote acknowledgement ';
   status.textContent = 'No request will be sent from this preview.';
