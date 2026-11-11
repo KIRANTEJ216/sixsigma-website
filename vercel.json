@@ -1,0 +1,52 @@
+{
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/p/about.html",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/p/categorie.html",
+      "destination": "/services/",
+      "permanent": true
+    },
+    {
+      "source": "/p/contact-us.html",
+      "destination": "/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/p/big-9-signages-image-gallery.html",
+      "destination": "/gallery/",
+      "permanent": true
+    }
+  ]
+}
