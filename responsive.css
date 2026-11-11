@@ -1,0 +1,77 @@
+/* Phone/tablet reading flow; desktop retains the ScrollCraft presentation. */
+.bs-header-logo{display:block;width:112px;height:63px;object-fit:contain}
+.bs-mobile-menu{display:none}
+.bs-mat__proof-cap{color:#F5F7FA}
+@media(max-width:1000px){
+ :root{--bs-rail:0px;--sc-gutter:clamp(1rem,4vw,2rem)}
+ .bs-top{gap:.6rem;padding:.45rem var(--sc-gutter)}
+ .bs-header-logo{width:88px;height:50px}
+ .bs-mobile-menu{display:block;margin-left:auto}
+ .bs-mobile-menu summary{list-style:none;cursor:pointer;min-height:44px;display:flex;align-items:center;padding:.65rem;border:1px solid var(--sc-hairline);border-radius:8px;font-size:.85rem}
+ .bs-mobile-menu summary::-webkit-details-marker{display:none}
+ .bs-mobile-menu nav{position:fixed;top:4.5rem;left:var(--sc-gutter);right:var(--sc-gutter);max-height:calc(100svh - 9rem);overflow:auto;display:grid;padding:.6rem;background:var(--sc-surface);border:1px solid var(--sc-hairline);border-radius:12px;box-shadow:0 16px 40px #0003}
+ .bs-mobile-menu nav a{padding:.85rem;min-height:44px;text-decoration:none;color:var(--sc-ink);border-radius:6px}
+ .bs-mobile-menu nav a:hover{background:var(--sc-canvas)}
+ .bs-theme{margin-left:0}
+ .bs-top .bs-btn{margin:0;padding:.65rem .85rem;font-size:.8rem}
+ .bs-top .lbl{display:none}.bs-top .lbl-s{display:inline}
+ .bs-margin,.bs-chip,.bs-sheet-mobile{display:none!important}
+ .sc-section{padding-block:3.5rem}
+ [data-sc-act]:not(#hero){height:auto!important;min-height:0!important;padding-block:3.5rem}
+ [data-sc-act]:not(#hero)>[data-sc-stage]{position:relative!important;top:auto!important;height:auto!important;min-height:0!important;overflow:visible!important}
+ [data-sc-act]:not(#hero) [data-sc-cue], [data-sc-act]:not(#hero) .sc-split__i{opacity:1!important;transform:none!important;pointer-events:auto!important}
+ [data-sc-act]:not(#hero) [data-sc-pan]{transform:none!important}
+ .bs-claims,.bs-claims__stack{height:auto;position:static}
+ .bs-claims__stack{display:grid;gap:2.5rem}
+ .bs-claims__stack>*{position:static;padding:0}
+ .bs-claims__big{font-size:clamp(2rem,7vw,3.2rem);line-height:1.1}
+ .bs-rail{height:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));padding-inline:var(--sc-gutter);gap:1.25rem}
+ .bs-rail-lead,.bs-rail-tail{grid-column:1/-1;width:auto;padding:0;max-width:60ch}
+ .bs-rail-lead{margin-bottom:1rem}.bs-rail-tail{margin-top:1rem}
+ .bs-cat,.bs-proj{width:100%;min-width:0;height:auto}
+ .bs-mat{display:flex;flex-direction:column;height:auto;gap:2rem;padding-inline:var(--sc-gutter)}
+ .bs-mat__draw{display:none}
+ .bs-mat__copy{position:static;width:100%;padding:0;display:grid;gap:2rem;order:0}
+ .bs-mat__copy::before{display:none}
+ .bs-mat__copy>*{position:static;padding:0}
+ .bs-mat__proof{position:relative;inset:auto;width:100%;aspect-ratio:4/3;opacity:1!important;order:1;border-radius:12px}
+ .bs-mat__proof-img:first-child{opacity:1!important}
+ .bs-mat__proof-img:last-of-type{display:none}
+ .bs-mat__proof-cap{font-size:.65rem}
+ .bs-studio{height:auto;gap:2rem}
+ .bs-studio__pad{min-width:0}
+ .bs-studio__pad>[data-sc-cue]{position:static;margin-bottom:1.5rem}
+ .bs-formwrap{padding-left:0;gap:2rem}
+ .bs-form{min-width:0}
+ .bs-form__row{grid-template-columns:1fr}
+ .bs-form input,.bs-form select,.bs-form textarea{min-width:0;font-size:16px}
+ .bs-form__fields>.bs-btn{width:100%;white-space:normal}
+ .bs-preview__head{flex-wrap:wrap}
+ .bs-preview__specs{grid-template-columns:minmax(0,1fr) minmax(0,1fr);overflow-wrap:anywhere}
+ .bs-faq summary{font-size:1.1rem;line-height:1.45}
+ .bs-split{grid-template-columns:1fr}
+ .bs-mobar a{font-size:.65rem}
+}
+@media(max-width:600px){
+ .bs-rail{grid-template-columns:minmax(0,1fr)}
+ .bs-hero__cta{gap:.5rem}.bs-hero__cta .bs-btn{padding:.7rem .8rem;font-size:.85rem}
+ .b9-types{grid-template-columns:minmax(0,1fr)}
+ .bs-form{padding:1rem}.bs-formwrap h2{max-width:18ch}
+ .b9-optional{padding:.5rem .75rem}.b9-optional summary{font-size:.85rem;gap:.5rem}
+ .bs-steps li{grid-template-columns:2rem minmax(0,1fr)}
+}
+/* Short phones, landscape and zoom: let the hero grow with its content. */
+@media(max-width:1000px) and (max-height:740px){
+ #hero{height:auto!important;min-height:0!important}
+ #hero>[data-sc-stage]{position:relative!important;top:auto!important;height:auto!important;min-height:0!important;overflow:visible!important;display:flex;flex-direction:column;padding:6rem var(--sc-gutter) 2rem;gap:2.5rem}
+ .bs-hero__copy{position:static;height:auto;width:100%;padding:0;order:1}
+ .bs-hero__copy>[data-sc-cue]{display:none!important}
+ .bs-hero__copy>[data-sc-cue]:first-child{display:flex!important;position:static;translate:none;transform:none!important;opacity:1!important;pointer-events:auto!important}
+ .bs-hero__copy .sc-split__i{opacity:1!important;transform:none!important}
+ .bs-draw{position:relative;inset:auto;transform:none;width:100%;height:auto;aspect-ratio:2;max-height:none;order:0}
+ .bs-photo__layer--after{mask-image:none;-webkit-mask-image:none}
+ .bs-photo__sheen{display:none}
+ .bs-scroll-hint{display:none}
+ .bs-hero::after{display:none}
+ .bs-hero__h1{font-size:clamp(2rem,6vw,3rem)}
+}
